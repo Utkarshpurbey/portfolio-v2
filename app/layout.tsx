@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import MyHeader from "./components/MyHeader";
+import ActiveTab from "./components/ActivePAge";
+import { Providers } from "./components/Provider";
+import MyFooter from "./components/MyFooter";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +20,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Providers>
+          <div className=" h-screen flex items-center justify-center p-4">
+            <div className="bg-[#011627] relative  w-full h-full   rounded-md border-[#1e2d3d] border">
+              <MyHeader />
+              {children}
+              <div className=" w-full  absolute bottom-0 ">
+                <MyFooter />
+              </div>
+            </div>
+          </div>
+        </Providers>
+      </body>
     </html>
   );
 }
