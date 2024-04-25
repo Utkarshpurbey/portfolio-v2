@@ -18,5 +18,30 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-start-rgb)); /* Set a solid background color */
+  background: rgb(
+    var(--background-start-rgb)
+  ); /* Set a solid background color */
+}
+
+.vs-code-700 {
+  font-family: var(----font-inconsolata);
+  font-weight: 700;
+}
+.vs-code-400 {
+  font-family: var(----font-inconsolata);
+  font-weight: 400;
+}
+.vs-code-300 {
+  font-family: var(----font-inconsolata);
+  font-weight: 300;
+}
+
+::-moz-selection {
+  background: #AFAFAF;
+}
+::-webkit-selection {
+  background: #AFAFAF;
+}
+::selection {
+  background: #AFAFAF;
 }

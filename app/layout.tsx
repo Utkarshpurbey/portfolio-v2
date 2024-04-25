@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import MyHeader from "./components/MyHeader";
-import ActiveTab from "./components/ActivePAge";
 import { Providers } from "./components/Provider";
 import MyFooter from "./components/MyFooter";
+import { Inconsolata } from "next/font/google"
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inconsolata({
+    subsets: ["latin"],
+    weight: ['300','400','700'],
+    variable: "--font-inconsolata",
+})
+
 
 export const metadata: Metadata = {
   title: "Create Next App",

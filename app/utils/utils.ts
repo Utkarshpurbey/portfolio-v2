@@ -1,1 +1,1 @@
-export const Tabs = ["Tab 1", "Tab 2", "Tab 3"];
+export const Tabs = ['_hello','_about-me','_projects'];
