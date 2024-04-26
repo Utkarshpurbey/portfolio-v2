@@ -11,10 +11,10 @@ const MyHeader = () => {
   const reduxDispatch = useDispatch();
   const router = useRouter();
 
-  const handleTabClick = (tab) => {
+  const handleTabClick = (tab:keyof typeof routeAsPerTab) => {
     reduxDispatch(setActiveTab(tab));
-    if (routeAsPerTab[tab]) {
-      router.push(routeAsPerTab[tab]); // Navigate to the corresponding route
+    if (routeAsPerTab[tab as keyof typeof routeAsPerTab]) {
+      router.push(routeAsPerTab[tab as keyof typeof routeAsPerTab]); 
     }
   };
 
@@ -31,7 +31,7 @@ const MyHeader = () => {
                   ? "bg-[#1e2d3d] text-white vs-code-400 !border-b-2 !border-[#ffa55f]"
                   : "vs-code-300 border-r-2 border-borderColor"
               } px-4`}
-              onClick={() => handleTabClick(ele)}
+              onClick={() => handleTabClick(ele as keyof typeof routeAsPerTab)}
             >
               {ele}
             </div>
