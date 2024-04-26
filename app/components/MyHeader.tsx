@@ -4,16 +4,18 @@ import { IRootState } from "../Slice/store";
 import { setActiveTab } from "../Slice/vitalInfo";
 import { Tabs, routeAsPerTab } from "../utils/utils"; // Assuming routeAsPerTab might contain mapping for routes based on tabs
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 
 const MyHeader = () => {
-  const vitalInfo = useSelector((state: IRootState) => state.vitalInfo);
-  const activeTab = vitalInfo.activeTab;
-  const reduxDispatch = useDispatch();
+  // const vitalInfo = useSelector((state: IRootState) => state.vitalInfo);
+  const [activeTab,setActiveTab] = useState(Tabs[0])
+  // const activeTab = vitalInfo.activeTab;
+  // const reduxDispatch = useDispatch();
   const router = useRouter();
 
   const handleTabClick = (tab:keyof typeof routeAsPerTab) => {
-    reduxDispatch(setActiveTab(tab));
-    if (routeAsPerTab[tab as keyof typeof routeAsPerTab]) {
+    setActiveTab(tab);
+    if (routeAsPerTab[tab as keyof typeof routeAsPerTab] && activeTab !== tab) {
       router.push(routeAsPerTab[tab as keyof typeof routeAsPerTab]); 
     }
   };
