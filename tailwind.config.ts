@@ -15,6 +15,10 @@ const config: Config = {
       },
       fontFamily: {
        sans: ['var(--font-inconsolata)'],
+      },
+      colors:{
+        borderColor: '#1e2d3d',
+        primary: '#010b15'
       }
     },
   },
