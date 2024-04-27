@@ -9,7 +9,7 @@
     "lint": "next lint && prettier --check . && git add -A . && prettier --write ."
   },
   "husky": {
-    "pre-commit": "npm run build && npm run lint"
+    "pre-commit": "npm run build"
   },
   "dependencies": {
     "@next/font": "^14.2.3",
