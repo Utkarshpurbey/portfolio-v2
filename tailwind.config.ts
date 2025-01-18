@@ -18,7 +18,8 @@ const config: Config = {
       },
       colors:{
         borderColor: '#1e2d3d',
-        primary: '#010b15'
+        primary: '#010b15',
+        primaryOrange:'#ffa55f'
       }
     },
   },
