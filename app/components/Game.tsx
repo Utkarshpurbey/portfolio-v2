@@ -8,7 +8,7 @@ const Game = () => {
     "bg-yellow-500",
   ];
   const blinkClass = "opacity-20";
-  const [gameSequence, updateGameSequence] = React.useState([]);
+  const [gameSequence, updateGameSequence] = React.useState<any>([]);
   const [userSequence, updateUserSequence] = React.useState<string[]>([]);
   const [hasGameStarted, updateGameStatus] = React.useState<boolean>(false);
   const [noOfPress, updateNoOfPress] = React.useState<number>(0);
@@ -116,7 +116,7 @@ const Game = () => {
           id="start-game"
           className="text-white flex justify-center aling-center "
         >
-          Press "a" from keyboard to start playing the game
+          Press &quot;a&quot; from keyboard to start playing the game
         </div>
       ) : (
         <div>
