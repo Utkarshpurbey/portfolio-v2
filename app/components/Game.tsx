@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import simonPng from "../../public/simon.png";
+import simonPng from "@/public/assets/simon.png";
 import Image from "next/image";
 const Game = () => {
   const colors = ["red", "green", "blue", "yellow"];

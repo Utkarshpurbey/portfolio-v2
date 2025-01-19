@@ -1,7 +1,7 @@
-import gitHub from "@/public/gitHub.svg";
-import twitter from "@/public/twitter.svg";
+import gitHub from "@/public/assets/gitHub.svg";
+import twitter from "@/public/assets/twitter.svg";
 import Image from "next/image";
-import insta from "@/public/insta.svg";
+import insta from "@/public/assets/insta.svg";
 const MyFooter = () => {
   return (
     <div className="border-t border-[#1e2d3d] py-1 px-4 flex items-center ">

@@ -3,14 +3,13 @@ import "./globals.css";
 import MyHeader from "./components/MyHeader";
 import { Providers } from "./components/Provider";
 import MyFooter from "./components/MyFooter";
-import { Inconsolata } from "next/font/google"
+import { Inconsolata } from "next/font/google";
 
 const inter = Inconsolata({
-    subsets: ["latin"],
-    weight: ['300','400','700'],
-    variable: "--font-inconsolata",
-})
-
+  subsets: ["latin"],
+  weight: ["300", "400", "700"],
+  variable: "--font-inconsolata",
+});
 
 export const metadata: Metadata = {
   title: "Utkarsh's Areana",
