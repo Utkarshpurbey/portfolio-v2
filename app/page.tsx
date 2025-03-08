@@ -7,7 +7,7 @@ const HomePage = () => {
     <div className="flex flex-col w-full h-full">
       <div className="flex flex-1 flex-row">
         <div className="flex-1 ">
-          <div>Today's agenda</div>
+          <div>Today agenda</div>
           <ol>
             <li>Make the game component fix</li>
             <li>correcting the header and foooter</li>
