@@ -4,23 +4,24 @@ import Image from "next/image";
 import insta from "@/public/assets/insta.svg";
 const MyFooter = () => {
   return (
-    <div className="border-t border-[#1e2d3d] py-1 px-4 flex items-center ">
-      <div className="flex w-1/5 border-r border-borderColor justify-between items-center">
-        <div>find me on :</div>
-        <div className="flex">
-          <div className="px-2 border-l  border-borderColor">
-            <Image src={twitter.src} height={20} width={20} alt="GitHub" />
-          </div>
-          <div className="border-l-2 border-borderColor px-2">
-            <Image src={insta.src} height={20} width={20} alt="insta" />
+    <div className="border-t border-[#1e2d3d]">
+      <div className="flex justify-between items-center">
+        <div className="px-2 flex w-[20%] items-center justify-between ">
+          <div>Find me on:</div>
+          <div className=" flex justify-between items-center">
+            <div className="border-l border-borderColor p-2">
+              <Image src={twitter.src} height={20} width={20} alt="GitHub" />
+            </div>
+            <div className="border-l border-r border-borderColor p-2 ">
+              <Image src={insta.src} height={20} width={20} alt="insta" />
+            </div>
           </div>
         </div>
-      </div>
-      <div className="flex w-4/5 relative">
-        <div className="aling-center w-full">Copyright © 2022 utkarsh-purbey</div>
-        <div className="flex absolute right-0">
-          <div >@Utkarshpurbey</div>
-          <Image src={gitHub.src} height={20} width={20} alt="GitHub" />
+        <div>
+          <div className=" flex items-center border-l border-borderColor p-2">
+            <div className="px-3">@Utkarshpurbey</div>
+            <Image src={gitHub.src} height={20} width={20} alt="GitHub" />
+          </div>
         </div>
       </div>
     </div>
