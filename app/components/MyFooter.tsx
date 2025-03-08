@@ -6,7 +6,7 @@ const MyFooter = () => {
   return (
     <div className="border-t border-[#1e2d3d]">
       <div className="flex justify-between items-center">
-        <div className="px-2 flex w-[20%] items-center justify-between ">
+        <div className="pl-2 flex w-[20%] items-center justify-between ">
           <div>Find me on:</div>
           <div className=" flex justify-between items-center">
             <div className="border-l border-borderColor p-2">

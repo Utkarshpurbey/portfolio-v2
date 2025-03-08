@@ -24,7 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <div className=" h-screen flex items-center justify-center p-4">
+          <div className="h-screen flex items-center justify-center p-6">
             <div className="bg-[#011627] relative  w-full h-full   rounded-md border-[#1e2d3d] border">
               <MyHeader />
               {children}
