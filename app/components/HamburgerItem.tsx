@@ -1,6 +1,7 @@
 "use client";
 import { ReactNode, useState } from "react";
 import down from "../../public/assets/down.svg";
+import right from "../../public/assets/right.svg";
 import Image from "next/image";
 type Iprops = {
   title: string;
@@ -12,21 +13,22 @@ const HamburgerItem = ({ title = "", isOpen = true, children }: Iprops) => {
   return (
     <>
       <div
-        className="flex w-full items-center py-1 cursor-pointer"
+        className="flex w-full items-center py-1 cursor-pointer border-b border-borderColor px-4"
         onClick={() => {
           setShouldOpen(!shouldOpen);
         }}
       >
-        {shouldOpen ? (
-          <Image src={down.src} height={9} width={9} alt={"down"} />
-        ) : (
-          <div>{">"}</div>
-        )}
+        <Image
+          src={shouldOpen ? down.src : right.src}
+          height={10}
+          width={10}
+          alt={"down"}
+        />
         <div className={`${shouldOpen ? "text-white" : ""} px-3 text-sm`}>
           {title}
         </div>
       </div>
-      {shouldOpen && children}
+      <div className="px-4">{shouldOpen && children}</div>
     </>
   );
 };
