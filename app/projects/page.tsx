@@ -56,7 +56,7 @@ const Projects = () => {
         <div className="px-4 w-[33%] max-h-[50%]">
           <div className="flex py-1 px-2">
             <div className="text-[#5565e8] font-semibold">Project 1</div>
-            <div className="pl-[10%]"> //_ui-animation</div>
+            <div className="pl-[10%]"> {`//_ui-animation`}</div>
           </div>
           <div className="border-borderColor border rounded-2xl">
             <div className="">
