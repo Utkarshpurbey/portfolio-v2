@@ -4,7 +4,7 @@ import Image from "next/image";
 import insta from "@/public/assets/insta.svg";
 const MyFooter = () => {
   return (
-    <div className="border-t border-[#1e2d3d]">
+    <div className="border-t border-[#1e2d3d] bg-[#011627]">
       <div className="flex justify-between items-center">
         <div className="pl-2 flex w-[20%] items-center justify-between ">
           <div>Find me on:</div>
