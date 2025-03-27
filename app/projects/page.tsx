@@ -1,9 +1,18 @@
 "use client";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import HamburgerItem from "../components/HamburgerItem";
 import cross from "../../public/assets/cross.svg";
 import Image from "next/image";
 import ProjectTile from "./ProjectTile";
+
+type Project = {
+  title: string;
+  description: string;
+  imageUrl: string;
+  tags: string;
+  buttonText: string;
+  techStack: string[];
+};
 
 const Projects = () => {
   const techStack = ["React", "Node", "JS", "TS", "Java", "C++"];
@@ -25,61 +34,90 @@ const Projects = () => {
       imageUrl: "https://picsum.photos/200/300",
       tags: "//_ui-animation",
       buttonText: "view-project",
+      techStack: ["React", "Node"], // Static tech stack
     },
     {
-      title: "Project 1",
+      title: "Project 2",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora molestiae est minus ut id praesentium consectetur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora molestiae est minus ut id praesentium consectetur.",
       imageUrl: "https://picsum.photos/200/300",
       tags: "//_ui-animation",
       buttonText: "view-project",
+      techStack: ["JS", "TS"], // Static tech stack
     },
     {
-      title: "Project 1",
+      title: "Project 3",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora molestiae est minus ut id praesentium consectetur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora molestiae est minus ut id praesentium consectetur.",
       imageUrl: "https://picsum.photos/200/300",
       tags: "//_ui-animation",
       buttonText: "view-project",
+      techStack: ["Java"], // Static tech stack (single element)
     },
     {
-      title: "Project 1",
+      title: "Project 4",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora molestiae est minus ut id praesentium consectetur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora molestiae est minus ut id praesentium consectetur.",
       imageUrl: "https://picsum.photos/200/300",
       tags: "//_ui-animation",
       buttonText: "view-project",
+      techStack: ["C++", "React", "TS"], // Static tech stack
     },
     {
-      title: "Project 2",
+      title: "Project 5",
       description: "Another project description goes here.",
       imageUrl: "https://picsum.photos/200/301",
       tags: "//_web-development",
       buttonText: "view-project",
+      techStack: ["Node", "Java"], // Static tech stack
     },
     {
-      title: "Project 2",
+      title: "Project 6",
       description: "Another project description goes here.",
       imageUrl: "https://picsum.photos/200/301",
       tags: "//_web-development",
       buttonText: "view-project",
+      techStack: ["JS"], // Static tech stack (single element)
     },
     {
-      title: "Project 2",
+      title: "Project 7",
       description: "Another project description goes here.",
       imageUrl: "https://picsum.photos/200/301",
       tags: "//_web-development",
       buttonText: "view-project",
+      techStack: ["React", "TS", "C++"], // Static tech stack
     },
     {
-      title: "Project 2",
+      title: "Project 8",
       description: "Another project description goes here.",
       imageUrl: "https://picsum.photos/200/301",
       tags: "//_web-development",
       buttonText: "view-project",
+      techStack: ["Node", "Java", "JS"], // Static tech stack
     },
-    // Add more projects as needed
   ];
+  let new_project = [];
+
+  const project_new = useMemo(() => {
+    // // let new_project = [];
+    // //  selectedOptions.map((item)=>{
+    // //    projects.map((i)=>i.techStack?.includes(item)=>{
+    // //     new_project = i;
+    // //    })
+    // // })
+    // return new_project;
+    //projects.filter((i) => i?.techStack?.includes(item));
+
+    selectedOptions?.map((item) => {
+      new_project = [
+        ...new_project,
+        ...projects.filter((i) => i?.techStack?.includes(item)),
+      ];
+    });
+    return new_project;
+  }, [selectedOptions, projects]);
+
+  console.log("uttu", project_new);
 
   return (
     <div className="flex w-full h-[calc(100vh-100px)]">
@@ -119,17 +157,19 @@ const Projects = () => {
           </div>
         )}
         <div className="flex flex-wrap pb-10">
-          {projects.map((project, index) => (
-            <ProjectTile
-              key={index}
-              title={project.title}
-              description={project.description}
-              imageUrl={project.imageUrl}
-              tags={project.tags}
-              buttonText={project.buttonText}
-              height={300}
-            />
-          ))}
+          {(project_new?.length > 0 ? project_new : projects).map(
+            (project, index) => (
+              <ProjectTile
+                key={index}
+                title={project.title}
+                description={project.description}
+                imageUrl={project.imageUrl}
+                tags={project.tags}
+                buttonText={project.buttonText}
+                height={300}
+              />
+            )
+          )}
         </div>
       </div>
     </div>
