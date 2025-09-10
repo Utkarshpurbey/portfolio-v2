@@ -6,6 +6,7 @@ const ProjectTile = ({
   imageUrl,
   tags,
   buttonText,
+  techStack,
   height = 400,
 }) => {
   return (
@@ -32,7 +33,8 @@ const ProjectTile = ({
             className="mt-2 p-2 flex flex-col"
             style={{ height: `calc(${height}px - 15vh - 16px)` }}
           >
-            <div className="overflow-y-auto flex-grow">{description}</div>
+            <div>{techStack}</div>
+            {/* <div className="overflow-y-auto flex-grow">{description}</div> */}
             <div className="my-2">
               <button className="py-1 px-3 bg-[#1b2b3a] rounded-lg">
                 {buttonText}

@@ -96,17 +96,9 @@ const Projects = () => {
       techStack: ["Node", "Java", "JS"], // Static tech stack
     },
   ];
-  let new_project = [];
+  let new_project: Project[] = [];
 
   const project_new = useMemo(() => {
-    // // let new_project = [];
-    // //  selectedOptions.map((item)=>{
-    // //    projects.map((i)=>i.techStack?.includes(item)=>{
-    // //     new_project = i;
-    // //    })
-    // // })
-    // return new_project;
-    //projects.filter((i) => i?.techStack?.includes(item));
 
     selectedOptions?.map((item) => {
       new_project = [
@@ -166,6 +158,7 @@ const Projects = () => {
                 imageUrl={project.imageUrl}
                 tags={project.tags}
                 buttonText={project.buttonText}
+                techStack= {project.techStack}
                 height={300}
               />
             )
