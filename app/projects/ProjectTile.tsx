@@ -10,7 +10,7 @@ const ProjectTile = ({
   height = 400,
 }) => {
   return (
-    <div className="px-4 w-[33%]">
+    <div className="w-[33%]">
       <div className="flex py-1 px-2">
         <div className="text-[#5565e8] font-semibold">{title}</div>
         <div className="pl-[10%]">{tags}</div>
@@ -30,11 +30,10 @@ const ProjectTile = ({
             />
           </div>
           <div
-            className="mt-2 p-2 flex flex-col"
+            className="mt-2 p-2 flex flex-col bg-[#001221]"
             style={{ height: `calc(${height}px - 15vh - 16px)` }}
           >
-            <div>{techStack}</div>
-            {/* <div className="overflow-y-auto flex-grow">{description}</div> */}
+            <div className="overflow-y-auto flex-grow">{description}</div>
             <div className="my-2">
               <button className="py-1 px-3 bg-[#1b2b3a] rounded-lg">
                 {buttonText}
