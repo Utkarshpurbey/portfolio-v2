@@ -22,7 +22,7 @@ export const projects = [
     githubUrl: "https://github.com/Utkarshpurbey/Leetcode-diaries",
   },
   {
-    title: "Form Builder UI",
+    title: "Form Builder",
     description:
       "A drag-and-drop form builder with an intuitive and minimal interface, enabling users to design complex forms with ease and export ready-to-use structures.",
     imageUrl:

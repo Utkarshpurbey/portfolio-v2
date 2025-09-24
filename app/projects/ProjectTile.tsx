@@ -10,16 +10,16 @@ const ProjectTile = ({
   height = 400,
 }) => {
   return (
-    <div className="w-[33%]">
+    <div className="w-[33%] p-4">
       <div className="flex py-1 px-2">
         <div className="text-[#5565e8] font-semibold">{title}</div>
-        <div className="pl-[10%]">{tags}</div>
+        <div className="pl-[5%]">{tags}</div>
       </div>
       <div
-        className="border-borderColor border rounded-2xl"
+        className="border-borderColor border rounded-2xl bg-[#001221]"
         style={{ height: `${height}px` }}
       >
-        <div>
+        <div >
           <div className="h-[15vh] w-full relative">
             <Image
               src={imageUrl}
@@ -30,7 +30,7 @@ const ProjectTile = ({
             />
           </div>
           <div
-            className="mt-2 p-2 flex flex-col bg-[#001221]"
+            className="mt-2 p-2 flex flex-col"
             style={{ height: `calc(${height}px - 15vh - 16px)` }}
           >
             <div className="overflow-y-auto flex-grow">{description}</div>
