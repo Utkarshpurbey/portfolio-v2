@@ -1,10 +1,14 @@
+import About from "../pages/About";
+import HomePage from "../pages/HomePage";
+import Projects from "../pages/Projects";
 export const Tabs = ['_hello', '_about-me', '_projects'];
 
-export const routeAsPerTab = {
-    "_hello": "/",
-    "_about-me": "/about-me",
-    "_projects": "/projects"
-  };
+ export const componentAsPerTab:any = {
+    "_hello": HomePage,
+    "_about-me": About,
+    "_projects": Projects
+  }; 
+
 
 export const codeStyle  = {
   hljs: {

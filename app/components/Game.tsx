@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import simonPng from "@/public/assets/simon.png";
 import Image from "next/image";
+const colors = ["red", "green", "blue", "yellow"];
+const boxColor = [
+  "bg-red-500",
+  "bg-green-500",
+  "bg-blue-500",
+  "bg-yellow-500",
+];
+const blinkClass = "opacity-20";
 const Game = () => {
-  const colors = ["red", "green", "blue", "yellow"];
-  const boxColor = [
-    "bg-red-500",
-    "bg-green-500",
-    "bg-blue-500",
-    "bg-yellow-500",
-  ];
-  const blinkClass = "opacity-20";
   const [gameSequence, updateGameSequence] = React.useState<any>([]);
   const [userSequence, updateUserSequence] = React.useState<string[]>([]);
   const [hasGameStarted, updateGameStatus] = React.useState<boolean>(false);
@@ -18,21 +18,33 @@ const Game = () => {
     React.useState<boolean>(false);
   const [score, updateScore] = useState(0);
 
-  const generateSequnce = () => {
+  const playAudio = React.useCallback((color) => {
+    const sound = new Audio(`../sounds/${color}.mp3`);
+    sound.play();
+  }, []);
+
+  const animatePress = React.useCallback((selectedColor) => {
+    const element = document.querySelector(`#id-${selectedColor}`);
+    playAudio(selectedColor);
+    if (element) {
+      element.classList.add(blinkClass);
+      setTimeout(() => element.classList.remove(blinkClass), 100);
+    }
+  }, [playAudio]);
+
+  const generateSequnce = React.useCallback(() => {
     const newGeneratedColor = colors[Math.floor(Math.random() * colors.length)];
     // showHint();
     setTimeout(() => animatePress(newGeneratedColor), 300);
-    updateGameSequence([...gameSequence, newGeneratedColor]);
-  };
+    updateGameSequence((prev) => [...prev, newGeneratedColor]);
+  }, [animatePress]);
 
-  const updateUserInput = (color) => {
-    updateNoOfPress(noOfPress + 1);
-    const newUserInput = [...userSequence, color];
-    updateUserSequence(newUserInput);
-    captureUserInputandProceed(newUserInput.length, newUserInput);
-  };
+  const startGame = React.useCallback(() => {
+    updateGameStatus(true);
+    generateSequnce();
+  }, [generateSequnce]);
 
-  const captureUserInputandProceed = (length, newUserInput) => {
+  const captureUserInputandProceed = React.useCallback((length, newUserInput) => {
     if (newUserInput[length - 1] === gameSequence[length - 1]) {
       if (newUserInput.length === gameSequence.length) {
         updateScore(score + 1);
@@ -44,32 +56,21 @@ const Game = () => {
     } else {
       updateUserMistakeStatus(true);
     }
-  };
+  }, [gameSequence, hasUserMadeMistake, generateSequnce, score]);
+
+  const updateUserInput = React.useCallback((color) => {
+    updateNoOfPress(noOfPress + 1);
+    const newUserInput = [...userSequence, color];
+    updateUserSequence(newUserInput);
+    captureUserInputandProceed(newUserInput.length, newUserInput);
+  }, [noOfPress, userSequence, captureUserInputandProceed]);
+
 
   const resetGame = () => window?.location.reload();
 
   useEffect(() => {
     if (hasUserMadeMistake) playAudio("wrong");
-  }, [hasUserMadeMistake]);
-
-  const playAudio = (color) => {
-    const sound = new Audio(`../sounds/${color}.mp3`);
-    sound.play();
-  };
-
-  const animatePress = (selectedColor) => {
-    const element = document.querySelector(`#id-${selectedColor}`);
-    playAudio(selectedColor);
-    if (element) {
-      element.classList.add(blinkClass);
-      setTimeout(() => element.classList.remove(blinkClass), 100);
-    }
-  };
-
-  const startGame = () => {
-    updateGameStatus(true);
-    generateSequnce();
-  };
+  }, [hasUserMadeMistake, playAudio]);
 
   useEffect(() => {
     const updateGameStatusFunction = (e) => {
@@ -81,7 +82,7 @@ const Game = () => {
     window.addEventListener("keydown", updateGameStatusFunction);
     return () =>
       window.removeEventListener("keydown", updateGameStatusFunction);
-  }, []);
+  }, [startGame]);
 
   const showHint = () => {
     gameSequence.forEach((color, index) =>

@@ -3,8 +3,8 @@ import React, { useMemo, useState } from "react";
 import HamburgerItem from "../components/HamburgerItem";
 import cross from "../../public/assets/cross.svg";
 import Image from "next/image";
-import ProjectTile from "./ProjectTile";
-import { projects, techStackArray } from "./projects";
+import ProjectTile from "../projects/ProjectTile";
+import { projects, techStackArray } from "../projects/projects.js";
 
 type Project = {
   title: string;
@@ -26,20 +26,15 @@ const Projects = () => {
     );
   };
 
-  let new_project: Project[] = [];
-
-  const project_new = useMemo(() => {
-
-    selectedOptions?.map((item) => {
-      new_project = [
-        ...new_project,
-        ...projects.filter((i) => i?.techStack?.includes(item)),
-      ];
-    });
-    return new_project;
-  }, [selectedOptions, projects]);
-
-  console.log("uttu", project_new);
+  const projectsToDisplay = useMemo(() => {
+    if (selectedOptions.length === 0) {
+      return projects;
+    }
+    const filteredProjects = selectedOptions.flatMap((item) =>
+      projects.filter((i) => i?.techStack?.includes(item))
+    );
+    return Array.from(new Set(filteredProjects));
+  }, [selectedOptions]);
 
   return (
     <div className="flex w-full h-[calc(100vh-100px)]">
@@ -79,20 +74,18 @@ const Projects = () => {
           </div>
         )}
         <div className="flex flex-wrap justify-around pb-10">
-          {(project_new?.length > 0 ? project_new : projects).map(
-            (project, index) => (
-              <ProjectTile
-                key={index}
-                title={project.title}
-                description={project.description}
-                imageUrl={project.imageUrl}
-                tags={project.tags}
-                buttonText={project.buttonText}
-                techStack={project.techStack}
-                height={350}
-              />
-            )
-          )}
+          {projectsToDisplay.map((project, index) => (
+            <ProjectTile
+              key={index}
+              title={project.title}
+              description={project.description}
+              imageUrl={project.imageUrl}
+              tags={project.tags}
+              buttonText={project.buttonText}
+              techStack={project.techStack}
+              height={350}
+            />
+          ))}
         </div>
       </div>
     </div>

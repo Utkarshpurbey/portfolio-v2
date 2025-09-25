@@ -12,6 +12,7 @@
     "pre-commit": "npm run build"
   },
   "dependencies": {
+    "@hugeicons/react": "^1.1.1",
     "@next/font": "^14.2.3",
     "@reduxjs/toolkit": "^2.2.3",
     "next": "14.2.2",

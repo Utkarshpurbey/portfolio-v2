@@ -1,23 +1,15 @@
 "use client";
-import { useRouter } from "next/navigation";
 import { IRootState } from "../Slice/store";
 import { setActiveTab } from "../Slice/vitalInfo";
-import { Tabs, routeAsPerTab } from "../utils/utils"; // Assuming routeAsPerTab might contain mapping for routes based on tabs
+import { Tabs } from "../utils/utils";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
 
 const MyHeader = () => {
-  // const vitalInfo = useSelector((state: IRootState) => state.vitalInfo);
-  const [activeTab,setActiveTab] = useState(Tabs[0])
-  // const activeTab = vitalInfo.activeTab;
-  // const reduxDispatch = useDispatch();
-  const router = useRouter();
+  const { activeTab } = useSelector((state: IRootState) => state.vitalInfo);
+  const reduxDispatch = useDispatch();
 
-  const handleTabClick = (tab:keyof typeof routeAsPerTab) => {
-    setActiveTab(tab);
-    if (routeAsPerTab[tab as keyof typeof routeAsPerTab] && activeTab !== tab) {
-      router.push(routeAsPerTab[tab as keyof typeof routeAsPerTab]); 
-    }
+  const handleTabClick = (tab: string) => {
+    reduxDispatch(setActiveTab(tab));
   };
 
   return (
@@ -33,7 +25,7 @@ const MyHeader = () => {
                   ? "bg-[#1e2d3d] text-white vs-code-400 !border-b-2 !border-[#ffa55f]"
                   : "vs-code-300 border-r-2 border-borderColor"
               } px-4 py-1`}
-              onClick={() => handleTabClick(ele as keyof typeof routeAsPerTab)}
+              onClick={() => handleTabClick(ele)}
             >
               {ele}
             </div>
