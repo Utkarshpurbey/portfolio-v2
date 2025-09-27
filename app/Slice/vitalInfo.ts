@@ -4,8 +4,8 @@ import { reset } from "./resetSlice";
 
 export type vitalInfoState = {
   activeTab: string;
-}
-const initialState:vitalInfoState = {
+};
+const initialState: vitalInfoState = {
   activeTab: Tabs[0],
 };
 const vitalInfoSlice = createSlice({
@@ -22,4 +22,4 @@ const vitalInfoSlice = createSlice({
   },
 });
 export const { setActiveTab } = vitalInfoSlice.actions;
-export default vitalInfoSlice.reducer
+export default vitalInfoSlice.reducer;

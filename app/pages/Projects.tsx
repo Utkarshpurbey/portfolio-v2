@@ -1,8 +1,8 @@
 "use client";
 import React, { useMemo, useState } from "react";
 import HamburgerItem from "../components/HamburgerItem";
-import cross from "../../public/assets/cross.svg";
-import Image from "next/image";
+import { FaTimes } from "react-icons/fa";
+import CustomCheckbox from "../components/CustomCheckbox";
 import ProjectTile from "../projects/ProjectTile";
 import { projects, techStackArray } from "../projects/projects.js";
 import { ICON_MAP } from "../utils/iconMap";
@@ -23,7 +23,7 @@ const Projects = () => {
     setSelectedOptions((prev) =>
       prev.includes(option)
         ? prev.filter((item) => item !== option)
-        : [...prev, option]
+        : [...prev, option],
     );
   };
 
@@ -32,7 +32,7 @@ const Projects = () => {
       return projects;
     }
     const filteredProjects = selectedOptions.flatMap((item) =>
-      projects.filter((i) => i?.techStack?.includes(item))
+      projects.filter((i) => i?.techStack?.includes(item)),
     );
     return Array.from(new Set(filteredProjects));
   }, [selectedOptions]);
@@ -42,29 +42,38 @@ const Projects = () => {
       <div className="w-[25%]  h-[calc(100vh-100px)] border-r border-borderColor">
         <div className="">
           <HamburgerItem title={"projects"} isOpen={true}>
-            <div className="">  {techStackArray?.map((i, index) => {
-              const Icon = ICON_MAP[i]?.Icon;
-              return (
-                <div key={index} className="flex items-center my-3">
-                  <input
-                    type="checkbox"
-                    className="appearance-none mr-2 h-5 w-5 cursor-pointer bg-primary border border-borderColor rounded-sm checked:bg-borderColor checked:bg-[url('/assets/check.svg')] bg-center bg-no-repeat"
-                    onChange={() => handleCheckboxChange(i)}
-                    checked={selectedOptions.includes(i)}
-                  />
-                  {Icon && (
-                    <Icon
-                      size={20}
-                      className="mr-2"
-                      color={selectedOptions.includes(i) ? "#607b96" : "#273e53"}
+            <div className="">
+              {" "}
+              {techStackArray?.map((i, index) => {
+                const Icon = ICON_MAP[i]?.Icon;
+                return (
+                  <div key={index} className="flex items-center my-3 mr-2">
+                    <CustomCheckbox
+                      checked={selectedOptions.includes(i)}
+                      onChange={() => handleCheckboxChange(i)}
                     />
-                  )}
-                  <label className={`${selectedOptions.includes(i) ?
-                    "text-white" : "text-current"
-                    }`}>{i}</label>
-                </div>
-              );
-            })}</div>
+                    {Icon && (
+                      <Icon
+                        size={20}
+                        className="mx-3"
+                        color={
+                          selectedOptions.includes(i) ? "#607b96" : "#273e53"
+                        }
+                      />
+                    )}
+                    <label
+                      className={`${
+                        selectedOptions.includes(i)
+                          ? "text-white"
+                          : "text-current"
+                      }`}
+                    >
+                      {i}
+                    </label>
+                  </div>
+                );
+              })}
+            </div>
           </HamburgerItem>
         </div>
       </div>
@@ -74,13 +83,13 @@ const Projects = () => {
             <div className="flex items-center border-r border-borderColor w-fit">
               {selectedOptions?.map((item, index) => {
                 return (
-                  <div key={index} className="px-1 py-2">
+                  <div key={index} className="px-2 py-2 font-400">
                     {selectedOptions?.length - 1 !== index ? `${item}; ` : item}
                   </div>
                 );
               })}
-              <div className="px-3" onClick={() => setSelectedOptions([])}>
-                <Image src={cross.src} height={8} width={8} alt={"hello"} />
+              <div className="pr-2" onClick={() => setSelectedOptions([])}>
+                <FaTimes size={14} />
               </div>
             </div>
           </div>

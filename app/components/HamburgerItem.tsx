@@ -1,8 +1,7 @@
 "use client";
 import { ReactNode, useState } from "react";
-import down from "../../public/assets/down.svg";
-import right from "../../public/assets/right.svg";
-import Image from "next/image";
+import { FaChevronDown, FaChevronRight } from "react-icons/fa";
+
 type Iprops = {
   title: string;
   isOpen: Boolean;
@@ -18,12 +17,7 @@ const HamburgerItem = ({ title = "", isOpen = true, children }: Iprops) => {
           setShouldOpen(!shouldOpen);
         }}
       >
-        <Image
-          src={shouldOpen ? down.src : right.src}
-          height={10}
-          width={10}
-          alt={"down"}
-        />
+        {shouldOpen ? <FaChevronDown size={10} color="white" /> : <FaChevronRight size={10} />}
         <div className={`${shouldOpen ? "text-white" : ""} px-3 text-sm`}>
           {title}
         </div>

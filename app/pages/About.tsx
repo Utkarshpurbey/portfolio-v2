@@ -9,7 +9,7 @@ const About = () => {
     //     <div key={index}>{item}</div>
     //   ))}
     // </div>`;
-  
+
   return (
     <div>
       <h1>Hello</h1>

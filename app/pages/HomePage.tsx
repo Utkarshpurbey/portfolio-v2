@@ -21,7 +21,7 @@ const HomePage = () => {
             className="h-[60vh] flex-col w-full flex items-center justify-center  "
             style={{
               backgroundImage: `url(${bg.src})`,
-              backgroundSize: "cover", 
+              backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
             }}
           >

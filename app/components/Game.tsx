@@ -2,12 +2,7 @@ import React, { useEffect, useState } from "react";
 import simonPng from "@/public/assets/simon.png";
 import Image from "next/image";
 const colors = ["red", "green", "blue", "yellow"];
-const boxColor = [
-  "bg-red-500",
-  "bg-green-500",
-  "bg-blue-500",
-  "bg-yellow-500",
-];
+const boxColor = ["bg-red-500", "bg-green-500", "bg-blue-500", "bg-yellow-500"];
 const blinkClass = "opacity-20";
 const Game = () => {
   const [gameSequence, updateGameSequence] = React.useState<any>([]);
@@ -23,14 +18,17 @@ const Game = () => {
     sound.play();
   }, []);
 
-  const animatePress = React.useCallback((selectedColor) => {
-    const element = document.querySelector(`#id-${selectedColor}`);
-    playAudio(selectedColor);
-    if (element) {
-      element.classList.add(blinkClass);
-      setTimeout(() => element.classList.remove(blinkClass), 100);
-    }
-  }, [playAudio]);
+  const animatePress = React.useCallback(
+    (selectedColor) => {
+      const element = document.querySelector(`#id-${selectedColor}`);
+      playAudio(selectedColor);
+      if (element) {
+        element.classList.add(blinkClass);
+        setTimeout(() => element.classList.remove(blinkClass), 100);
+      }
+    },
+    [playAudio],
+  );
 
   const generateSequnce = React.useCallback(() => {
     const newGeneratedColor = colors[Math.floor(Math.random() * colors.length)];
@@ -44,27 +42,32 @@ const Game = () => {
     generateSequnce();
   }, [generateSequnce]);
 
-  const captureUserInputandProceed = React.useCallback((length, newUserInput) => {
-    if (newUserInput[length - 1] === gameSequence[length - 1]) {
-      if (newUserInput.length === gameSequence.length) {
-        updateScore(score + 1);
-        setTimeout(() => {
-          if (!hasUserMadeMistake) generateSequnce();
-        }, 1000);
-        updateUserSequence([]);
+  const captureUserInputandProceed = React.useCallback(
+    (length, newUserInput) => {
+      if (newUserInput[length - 1] === gameSequence[length - 1]) {
+        if (newUserInput.length === gameSequence.length) {
+          updateScore(score + 1);
+          setTimeout(() => {
+            if (!hasUserMadeMistake) generateSequnce();
+          }, 1000);
+          updateUserSequence([]);
+        }
+      } else {
+        updateUserMistakeStatus(true);
       }
-    } else {
-      updateUserMistakeStatus(true);
-    }
-  }, [gameSequence, hasUserMadeMistake, generateSequnce, score]);
+    },
+    [gameSequence, hasUserMadeMistake, generateSequnce, score],
+  );
 
-  const updateUserInput = React.useCallback((color) => {
-    updateNoOfPress(noOfPress + 1);
-    const newUserInput = [...userSequence, color];
-    updateUserSequence(newUserInput);
-    captureUserInputandProceed(newUserInput.length, newUserInput);
-  }, [noOfPress, userSequence, captureUserInputandProceed]);
-
+  const updateUserInput = React.useCallback(
+    (color) => {
+      updateNoOfPress(noOfPress + 1);
+      const newUserInput = [...userSequence, color];
+      updateUserSequence(newUserInput);
+      captureUserInputandProceed(newUserInput.length, newUserInput);
+    },
+    [noOfPress, userSequence, captureUserInputandProceed],
+  );
 
   const resetGame = () => window?.location.reload();
 
@@ -86,7 +89,7 @@ const Game = () => {
 
   const showHint = () => {
     gameSequence.forEach((color, index) =>
-      setTimeout(() => animatePress(color), index + 1 * 500)
+      setTimeout(() => animatePress(color), index + 1 * 500),
     );
   };
 

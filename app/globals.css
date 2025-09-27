@@ -5,13 +5,16 @@
 :root {
   --foreground-rgb: 97, 123, 150; /* RGB representation of #617b96 */
   --background-start-rgb: 1, 11, 21; /* RGB representation of #010b15 */
-  --background-end-rgb: 1, 11, 21; /* Using the same for both start and end in this case */
+  --background-end-rgb:
+    1, 11, 21; /* Using the same for both start and end in this case */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 97, 123, 150; /* RGB for dark theme, but same as above for consistent colors */
-    --background-start-rgb: 1, 11, 21; /* Same as above, keeping it consistent */
+    --foreground-rgb:
+      97, 123, 150; /* RGB for dark theme, but same as above for consistent colors */
+    --background-start-rgb:
+      1, 11, 21; /* Same as above, keeping it consistent */
     --background-end-rgb: 1, 11, 21; /* Same as above, consistent dark theme */
   }
 }
@@ -37,11 +40,11 @@ body {
 }
 
 ::-moz-selection {
-  background: #AFAFAF;
+  background: #afafaf;
 }
 ::-webkit-selection {
-  background: #AFAFAF;
+  background: #afafaf;
 }
 ::selection {
-  background: #AFAFAF;
+  background: #afafaf;
 }

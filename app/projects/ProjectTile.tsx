@@ -19,7 +19,7 @@ const ProjectTile = ({
         className="border-borderColor border rounded-2xl bg-[#001221]"
         style={{ height: `${height}px` }}
       >
-        <div >
+        <div>
           <div className="h-[15vh] w-full relative">
             <Image
               src={imageUrl}
