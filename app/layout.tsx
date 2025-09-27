@@ -21,7 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={inter.className}>
         <Providers>
           <div className="h-screen flex items-center justify-center p-6 select-none">
-            <div className="bg-[#011627] relative  w-full h-full   rounded-md border-[#1e2d3d] border">
+            <div className="bg-[#011627] relative  w-full h-full   rounded-md border-borderColor border-2">
               <MyHeader />
               {children}
               <div className=" w-full  absolute bottom-0 ">

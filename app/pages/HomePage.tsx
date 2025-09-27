@@ -5,12 +5,14 @@ const HomePage = () => {
   return (
     <div className="flex flex-col w-full h-full">
       <div className="flex flex-1 flex-row">
-        <div className="flex-1 ">
+        <div className="flex-1 p-4">
           <div>Today agenda</div>
-          <ol>
-            <li>Make the game component fix</li>
-            <li>correcting the header and foooter</li>
-          </ol>
+          <ul className="pl-4">
+            <li>Making header and footer better</li>
+            <li>Working on color and font</li>
+            <li>Project page mein card ko structure krna and </li>
+            <li>Side Panel ko common banana</li>
+          </ul>
         </div>
 
         <div className="flex-1 min-w-[50%]" id="game-container">
@@ -19,8 +21,8 @@ const HomePage = () => {
             className="h-[60vh] flex-col w-full flex items-center justify-center  "
             style={{
               backgroundImage: `url(${bg.src})`,
-              backgroundSize: "cover", // Optional: Adjust to fit the image properly
-              backgroundRepeat: "no-repeat", // Optional: Prevent tiling
+              backgroundSize: "cover", 
+              backgroundRepeat: "no-repeat",
             }}
           >
             <div className="h-[45vh] w-[85%] bg-gradient-to-br from-[#1b665e] to-[#1c3a5f] rounded-md overflow-auto">

@@ -13,7 +13,7 @@ const HamburgerItem = ({ title = "", isOpen = true, children }: Iprops) => {
   return (
     <>
       <div
-        className="flex w-full items-center py-1 cursor-pointer border-b border-borderColor px-4"
+        className="flex w-full items-center py-2 cursor-pointer border-b border-borderColor px-4"
         onClick={() => {
           setShouldOpen(!shouldOpen);
         }}
