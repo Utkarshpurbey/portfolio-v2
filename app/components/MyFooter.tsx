@@ -4,7 +4,9 @@ const MyFooter = () => {
     <div className="border-t border-borderColor bg-[#011627]">
       <div className="flex justify-between items-center">
         <div className="pl-2 flex w-[20%] items-center justify-between ">
-          <div>Find me on:</div>
+        <div className="flex items-center justify-center w-full">
+            <div>find me in:</div>
+        </div>
           <div className=" flex justify-between items-center">
             <div className="border-l border-borderColor p-2">
               <FaTwitter size={20} />

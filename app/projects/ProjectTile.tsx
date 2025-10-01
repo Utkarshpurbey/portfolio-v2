@@ -18,15 +18,15 @@ const ProjectTile: React.FC<Props> = ({
   imageUrl,
   tags,
   techStack,
-  height = 200,
+  height = 100,
   githubUrl,
 }) => {
   return (
     <div className="w-full md:w-1/2 lg:w-1/3 p-4">
       <div className="flex py-1 px-2">
         <div className="text-[#5565e8] font-semibold">{title}</div>
-        <div className="flex space-x-2">
-         <div className="pl-4">{tags}</div>
+        <div className="flex">
+          <div className="pl-4">{tags}</div>
         </div>
       </div>
       <div
@@ -34,7 +34,7 @@ const ProjectTile: React.FC<Props> = ({
         style={{ height: `${height}px` }}
       >
         <div>
-          <div className="h-[15vh] w-full relative">
+          <div className="h-[12vh] w-full relative">
             <Image
               src={imageUrl}
               layout="fill"
@@ -46,15 +46,15 @@ const ProjectTile: React.FC<Props> = ({
               {techStack &&
                 techStack.map((tech, index) => {
                   const IconData = ICON_MAP[tech];
-                  if (!IconData || index ==1) return null;
+                  if (!IconData || index == 1) return null;
                   const { Icon, color } = IconData;
                   return (
                     <div
                       key={index}
-                      className="w-8 h-8 flex items-center justify-center rounded-sm p-1"
+                      className="w-7 h-7 flex items-center justify-center rounded-sm p-1"
                       style={{ backgroundColor: color }}
                     >
-                      <Icon size={20} color="black" />
+                      <Icon size={16} color="black" />
                     </div>
                   );
                 })}
@@ -62,16 +62,16 @@ const ProjectTile: React.FC<Props> = ({
           </div>
           <div
             className="mt-2 p-2 flex flex-col"
-            style={{ height: `calc(${height}px - 15vh - 16px)` }}
+            style={{ height: `calc(${height}px - 12vh - 16px)` }}
           >
-            <div className="overflow-y-auto flex-grow">{description}</div>
-            <div className="my-2">
+            <div className="overflow-y-auto flex-grow flex-col items-center justify-center">{description}</div>
+            <div>
               <a href={githubUrl} target="_blank" rel="noopener noreferrer">
-                <button className="py-1 px-3 bg-[#1c2b3a] rounded-lg hover:bg-[#2c4d6b]">
-                  view project
+                <button className="py-[6px] px-4 bg-[#1c2b3a] rounded-lg hover:bg-[#2c4d6b] text-white font-400">
+                  view-project
                 </button>
               </a>
-            </div>
+          </div>
           </div>
         </div>
       </div>

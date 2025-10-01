@@ -13,7 +13,7 @@ type Project = {
   imageUrl: string;
   tags: string[];
   techStack: string[];
-  githubUrl:string;
+  githubUrl: string;
 };
 
 const Projects = () => {
@@ -62,11 +62,10 @@ const Projects = () => {
                       />
                     )}
                     <label
-                      className={`${
-                        selectedOptions.includes(i)
+                      className={`${selectedOptions.includes(i)
                           ? "text-white"
                           : "text-current"
-                      }`}
+                        }`}
                     >
                       {i}
                     </label>
@@ -88,13 +87,13 @@ const Projects = () => {
                   </div>
                 );
               })}
-              <div className="pr-2" onClick={() => setSelectedOptions([])}>
+              <div className="pr-2 cursor-pointer" onClick={() => setSelectedOptions([])}>
                 <FaTimes size={14} />
               </div>
             </div>
           </div>
         )}
-        <div className="flex flex-wrap pb-10">
+        <div className={`${selectedOptions?.length > 0 ? '' : 'pt-8'} flex flex-wrap pb-10`}>
           {projectsToDisplay.map((project, index) => (
             <ProjectTile
               key={index}
@@ -104,7 +103,7 @@ const Projects = () => {
               tags={project.tags}
               techStack={project.techStack}
               githubUrl={project.githubUrl}
-              height={350}
+              height={320}
             />
           ))}
         </div>
