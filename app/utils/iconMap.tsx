@@ -1,5 +1,6 @@
 // utils/iconMap.tsx
 import {
+  SiReact,
   SiTypescript,
   SiCplusplus,
   SiNodedotjs,
@@ -9,7 +10,6 @@ import {
   SiMysql,
   SiHtml5,
 } from "react-icons/si";
-import { IoLogoReact } from "react-icons/io5";
 import React from "react";
 
 export const ICON_MAP: Record<
@@ -23,7 +23,7 @@ export const ICON_MAP: Record<
     color: string;
   }
 > = {
-  React: { Icon: IoLogoReact, color: "#61DBFB" },
+  React: { Icon: SiReact, color: "#61DBFB" },
   TypeScript: { Icon: SiTypescript, color: "#3178C6" },
   "C++": { Icon: SiCplusplus, color: "#00599C" },
   "Node.js": { Icon: SiNodedotjs, color: "#83CD29" },

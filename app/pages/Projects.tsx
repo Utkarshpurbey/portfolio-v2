@@ -11,9 +11,9 @@ type Project = {
   title: string;
   description: string;
   imageUrl: string;
-  tags: string;
-  buttonText: string;
+  tags: string[];
   techStack: string[];
+  githubUrl:string;
 };
 
 const Projects = () => {
@@ -102,8 +102,8 @@ const Projects = () => {
               description={project.description}
               imageUrl={project.imageUrl}
               tags={project.tags}
-              buttonText={project.buttonText}
               techStack={project.techStack}
+              githubUrl={project.githubUrl}
               height={350}
             />
           ))}
