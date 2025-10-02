@@ -14,7 +14,7 @@
     --foreground-rgb:
       97, 123, 150; /* RGB for dark theme, but same as above for consistent colors */
     --background-start-rgb:
-      1, 11, 21; /* Same as above, keeping it consistent */
+      1, 13, 21; /* Same as above, keeping it consistent */
     --background-end-rgb: 1, 11, 21; /* Same as above, consistent dark theme */
   }
 }

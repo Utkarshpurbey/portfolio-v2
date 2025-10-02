@@ -1,5 +1,6 @@
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { codeStyle } from "../utils/utils";
+import SidePanel from "../components/SidePanel";
 
 //
 const About = () => {
@@ -11,8 +12,10 @@ const About = () => {
     // </div>`;
 
   return (
-    <div>
+    <div className="flex">
+      <SidePanel width={20}>
       <h1>Hello</h1>
+      </SidePanel>
 
       <SyntaxHighlighter
         language="javascript"

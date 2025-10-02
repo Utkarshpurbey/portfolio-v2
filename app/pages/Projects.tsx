@@ -6,6 +6,7 @@ import CustomCheckbox from "../components/CustomCheckbox";
 import ProjectTile from "../projects/ProjectTile";
 import { projects, techStackArray } from "../projects/projects.js";
 import { ICON_MAP } from "../utils/iconMap";
+import SidePanel from "../components/SidePanel";
 
 type Project = {
   title: string;
@@ -37,45 +38,49 @@ const Projects = () => {
     return Array.from(new Set(filteredProjects));
   }, [selectedOptions]);
 
+  const Options = () => {
+    return (<div className="">
+      {" "}
+      {techStackArray?.map((i, index) => {
+        const Icon = ICON_MAP[i]?.Icon;
+        return (
+          <div key={index} className="flex items-center my-3 mr-2">
+            <CustomCheckbox
+              checked={selectedOptions.includes(i)}
+              onChange={() => handleCheckboxChange(i)}
+            />
+            {Icon && (
+              <Icon
+                size={20}
+                className="mx-3"
+                color={
+                  selectedOptions.includes(i) ? "#607b96" : "#273e53"
+                }
+              />
+            )}
+            <label
+              className={`${selectedOptions.includes(i)
+                ? "text-white"
+                : "text-current"
+                }`}
+            >
+              {i}
+            </label>
+          </div>
+        );
+      })}
+    </div>)
+  }
+
   return (
     <div className="flex w-full h-[calc(100vh-100px)]">
-      <div className="w-[25%]  h-[calc(100vh-100px)] border-r border-borderColor">
+      <SidePanel>
         <div className="">
           <HamburgerItem title={"projects"} isOpen={true}>
-            <div className="">
-              {" "}
-              {techStackArray?.map((i, index) => {
-                const Icon = ICON_MAP[i]?.Icon;
-                return (
-                  <div key={index} className="flex items-center my-3 mr-2">
-                    <CustomCheckbox
-                      checked={selectedOptions.includes(i)}
-                      onChange={() => handleCheckboxChange(i)}
-                    />
-                    {Icon && (
-                      <Icon
-                        size={20}
-                        className="mx-3"
-                        color={
-                          selectedOptions.includes(i) ? "#607b96" : "#273e53"
-                        }
-                      />
-                    )}
-                    <label
-                      className={`${selectedOptions.includes(i)
-                          ? "text-white"
-                          : "text-current"
-                        }`}
-                    >
-                      {i}
-                    </label>
-                  </div>
-                );
-              })}
-            </div>
+            <Options />
           </HamburgerItem>
         </div>
-      </div>
+      </SidePanel>
       <div className="w-full overflow-y-auto">
         {selectedOptions?.length > 0 && (
           <div className="border-b border-borderColor w-full text-sm">
