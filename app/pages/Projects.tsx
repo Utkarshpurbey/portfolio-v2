@@ -1,4 +1,3 @@
-"use client";
 import React, { useMemo, useState } from "react";
 import HamburgerItem from "../components/HamburgerItem";
 import { FaTimes } from "react-icons/fa";
@@ -7,6 +6,8 @@ import ProjectTile from "../projects/ProjectTile";
 import { projects, techStackArray } from "../projects/projects.js";
 import { ICON_MAP } from "../utils/iconMap";
 import SidePanel from "../components/SidePanel";
+import { useSelector } from "react-redux";
+import { IRootState } from "../Slice/store";
 
 type Project = {
   title: string;
@@ -18,6 +19,7 @@ type Project = {
 };
 
 const Projects = () => {
+  const { isMenuOpen } = useSelector((state: IRootState) => state.vitalInfo);
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
   const handleCheckboxChange = (option) => {
@@ -74,45 +76,49 @@ const Projects = () => {
 
   return (
     <div className="flex w-full h-[calc(100vh-100px)]">
-      <SidePanel>
-        <div className="">
-          <HamburgerItem title={"projects"} isOpen={true}>
-            <Options />
-          </HamburgerItem>
-        </div>
-      </SidePanel>
-      <div className="w-full overflow-y-auto">
-        {selectedOptions?.length > 0 && (
-          <div className="border-b border-borderColor w-full text-sm">
-            <div className="flex items-center border-r border-borderColor w-fit">
-              {selectedOptions?.map((item, index) => {
-                return (
-                  <div key={index} className="px-2 py-2 font-400">
-                    {selectedOptions?.length - 1 !== index ? `${item}; ` : item}
+      {!isMenuOpen && (
+        <>
+          <SidePanel>
+            <div className="">
+              <HamburgerItem title={"projects"} isOpen={true}>
+                <Options />
+              </HamburgerItem>
+            </div>
+          </SidePanel>
+          <div className="w-full overflow-y-auto">
+            {selectedOptions?.length > 0 && (
+              <div className="border-b border-borderColor w-full text-sm">
+                <div className="flex items-center border-r border-borderColor w-fit">
+                  {selectedOptions?.map((item, index) => {
+                    return (
+                      <div key={index} className="px-2 py-2 font-400">
+                        {selectedOptions?.length - 1 !== index ? `${item}; ` : item}
+                      </div>
+                    );
+                  })}
+                  <div className="pr-2 cursor-pointer" onClick={() => setSelectedOptions([])}>
+                    <FaTimes size={14} />
                   </div>
-                );
-              })}
-              <div className="pr-2 cursor-pointer" onClick={() => setSelectedOptions([])}>
-                <FaTimes size={14} />
+                </div>
               </div>
+            )}
+            <div className={`${selectedOptions?.length > 0 ? '' : 'pt-8'} flex flex-wrap pb-10`}>
+              {projectsToDisplay.map((project, index) => (
+                <ProjectTile
+                  key={index}
+                  title={project.title}
+                  description={project.description}
+                  imageUrl={project.imageUrl}
+                  tags={project.tags}
+                  techStack={project.techStack}
+                  githubUrl={project.githubUrl}
+                  height={320}
+                />
+              ))}
             </div>
           </div>
-        )}
-        <div className={`${selectedOptions?.length > 0 ? '' : 'pt-8'} flex flex-wrap pb-10`}>
-          {projectsToDisplay.map((project, index) => (
-            <ProjectTile
-              key={index}
-              title={project.title}
-              description={project.description}
-              imageUrl={project.imageUrl}
-              tags={project.tags}
-              techStack={project.techStack}
-              githubUrl={project.githubUrl}
-              height={320}
-            />
-          ))}
-        </div>
-      </div>
+        </>
+      )}
     </div>
   );
 };

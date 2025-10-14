@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import MyHeader from "./components/MyHeader";
 import { Providers } from "./components/Provider";
-import MyFooter from "./components/MyFooter";
 import { Inconsolata } from "next/font/google";
+import FooterWrapper from "./components/FooterWrapper";
+import ResolutionListener from "./utils/ResolutionListener";
 
 const inter = Inconsolata({
   subsets: ["latin"],
@@ -15,22 +16,17 @@ export const metadata: Metadata = {
   title: "Utkarsh's Areana",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={inter.className}>
         <Providers>
+          <ResolutionListener />
           <div className="h-screen flex items-center justify-center p-6 select-none">
             <div className="bg-[#011627] relative  w-full h-full   rounded-md border-borderColor border-2">
               <MyHeader />
               {children}
-              <div className=" w-full  absolute bottom-0 ">
-                <MyFooter />
-              </div>
+              <FooterWrapper />
             </div>
           </div>
         </Providers>
