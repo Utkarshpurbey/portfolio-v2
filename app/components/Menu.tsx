@@ -26,7 +26,7 @@ const Menu = () => {
         </div>
       ))}
       <div className="text-left w-full px-6 py-4 cursor-pointer text-xl vs-code-300 
-        ide-hover animate-slideInFromRight">
+        ide-hover animate-slideInFromRight" onClick={() => handleTabClick("_contact-me")}>
         _contact-me
       </div>
     </div>
