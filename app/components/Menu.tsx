@@ -13,19 +13,20 @@ const Menu = () => {
   };
 
   return (
-    <div className="bg-[#011627] w-full h-full flex flex-col items-center justify-center border-t border-b border-borderColor">
+    <div className="bg-[#011627] w-full h-full flex flex-col items-center justify-center border-t border-b border-borderColor animate-fadeInIDE">
       {Tabs?.map((ele, index) => (
         <div
           key={index}
           onClick={() => handleTabClick(ele)}
-          className={`px-6 py-4 cursor-pointer border-b border-borderColor w-full text-xl ${
-            activeTab === ele ? "text-white" : "vs-code-300"
-          }`}
+          className={`px-6 py-4 cursor-pointer border-b border-borderColor w-full text-xl ide-hover
+            ${activeTab === ele ? "text-white ide-active" : "vs-code-300"}`}
+          style={{ animationDelay: `${index * 0.05}s` }}
         >
-          {ele}
+          <span className="animate-slideInFromLeft">{ele}</span>
         </div>
       ))}
-      <div className="text-left w-full px-6 py-4 cursor-pointer text-xl vs-code-300 aborder-t">
+      <div className="text-left w-full px-6 py-4 cursor-pointer text-xl vs-code-300 
+        ide-hover animate-slideInFromRight">
         _contact-me
       </div>
     </div>

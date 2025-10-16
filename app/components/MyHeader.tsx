@@ -19,9 +19,9 @@ const MyHeader = () => {
   };
 
   return (
-    <div className="relative w-full flex items-center border-b border-borderColor border-t-0 h-10">
+    <div className="relative w-full flex items-center border-b border-borderColor border-t-0 h-10 animate-slideInFromTop">
       <div className="w-1/2 md:w-1/5 h-full flex items-center border-r border-borderColor px-4">
-        utkarsh-purbey
+        <span className="animate-fadeInIDE">utkarsh-purbey</span>
       </div>
       <div className="flex w-1/2 md:w-4/5 justify-end md:justify-between items-center h-full">
         <div className="hidden md:flex cursor-pointer h-full">
@@ -30,32 +30,33 @@ const MyHeader = () => {
               key={index}
               onClick={() => handleTabClick(ele)}
               className={`h-full flex items-center px-6 
-                border-r border-borderColor
+                border-r border-borderColor ide-hover
                 ${activeTab === ele
-                  ? "text-white vs-code-400 border-b-2 border-b-[#ffa55f]"
+                  ? "text-white vs-code-400 border-b-2 border-b-[#ffa55f] ide-active"
                   : "vs-code-300"
                 }`}
+              style={{ animationDelay: `${index * 0.05}s` }}
             >
-              {ele}
+              <span className="animate-slideInFromLeft">{ele}</span>
             </div>
           ))}
         </div>
 
         <div className="hidden md:flex h-full items-center px-4 border-l border-borderColor">
-          _contact-me
+          <span className="animate-slideInFromRight ide-hover cursor-pointer">_contact-me</span>
         </div>
         <div className="md:hidden flex items-center px-4 h-full border-l border-borderColor">
           {!isMenuOpen ? <FiMenu
-            className="cursor-pointer"
+            className="cursor-pointer ide-hover animate-fadeInIDE"
             onClick={() => reduxDispatch(setIsMenuOpen(!isMenuOpen))}
           /> :
-            <IoMdClose className="cursor-pointer"
+            <IoMdClose className="cursor-pointer ide-hover animate-fadeInIDE"
               onClick={() => reduxDispatch(setIsMenuOpen(!isMenuOpen))} />}
 
         </div>
       </div>
       {isMenuOpen && (
-        <div className="absolute top-full left-0 w-full z-50">
+        <div className="absolute top-full left-0 w-full z-50 animate-slideInFromTop">
           <Menu />
         </div>
       )}

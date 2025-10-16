@@ -75,19 +75,19 @@ const Projects = () => {
   }
 
   return (
-    <div className="flex w-full h-[calc(100vh-100px)]">
+    <div className="flex w-full h-[calc(100vh-100px)] animate-fadeInIDE md:flex-row flex-col">
       {!isMenuOpen && (
         <>
           <SidePanel>
-            <div className="">
-              <HamburgerItem title={"projects"} isOpen={true}>
+            <div className="animate-slideInFromLeft">
+              <HamburgerItem title={"projects"} isOpen={false}>
                 <Options />
               </HamburgerItem>
             </div>
           </SidePanel>
-          <div className="w-full overflow-y-auto">
+          <div className="w-full overflow-y-auto animate-slideInFromRight">
             {selectedOptions?.length > 0 && (
-              <div className="border-b border-borderColor w-full text-sm">
+              <div className="w-full text-sm animate-slideInFromTop">
                 <div className="flex items-center border-r border-borderColor w-fit">
                   {selectedOptions?.map((item, index) => {
                     return (
@@ -96,7 +96,7 @@ const Projects = () => {
                       </div>
                     );
                   })}
-                  <div className="pr-2 cursor-pointer" onClick={() => setSelectedOptions([])}>
+                  <div className="pr-2 cursor-pointer ide-hover" onClick={() => setSelectedOptions([])}>
                     <FaTimes size={14} />
                   </div>
                 </div>

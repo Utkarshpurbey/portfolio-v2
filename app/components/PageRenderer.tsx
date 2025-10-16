@@ -6,7 +6,11 @@ const PageRenderer = () => {
   const { activeTab } = useSelector((state: any) => state.vitalInfo);
   const ComponentToRender = componentAsPerTab[activeTab];
 
-  return <ComponentToRender />;
+  return (
+    <div className="animate-fadeInIDE">
+      <ComponentToRender />
+    </div>
+  );
 };
 
 export default PageRenderer;

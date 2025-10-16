@@ -1,6 +1,7 @@
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { codeStyle } from "../utils/utils";
 import SidePanel from "../components/SidePanel";
+import HamburgerItem from "../components/HamburgerItem";
 import { useSelector } from "react-redux";
 import { IRootState } from "../Slice/store";
 
@@ -15,20 +16,26 @@ const About = () => {
     // </div>`;
 
   return (
-    <div className="flex">
+    <div className="flex animate-fadeInIDE md:flex-row flex-col">
       {!isMenuOpen && (
         <>
           <SidePanel width={20}>
-            <h1>Hello</h1>
+            <div className="animate-slideInFromLeft">
+              <HamburgerItem title={"about"} isOpen={false}>
+                <div className="text-sm text-gray-400">Personal info</div>
+              </HamburgerItem>
+            </div>
           </SidePanel>
 
-          <SyntaxHighlighter
-            language="javascript"
-            style={codeStyle}
-            showLineNumbers={true}
-          >
-            {jsxString}
-          </SyntaxHighlighter>
+          <div className="animate-slideInFromRight">
+            <SyntaxHighlighter
+              language="javascript"
+              style={codeStyle}
+              showLineNumbers={true}
+            >
+              {jsxString}
+            </SyntaxHighlighter>
+          </div>
         </>
       )}
     </div>

@@ -48,3 +48,147 @@ body {
 ::selection {
   background: #afafaf;
 }
+
+/* IDE-Style Animations */
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blinkCursor {
+  0%, 50% {
+    border-right-color: #607b96;
+  }
+  51%, 100% {
+    border-right-color: transparent;
+  }
+}
+
+@keyframes fadeInIDE {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes highlight {
+  0% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: rgba(255, 165, 95, 0.1);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+@keyframes terminalBlink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes smoothTransition {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* IDE Animation Classes */
+.animate-typewriter {
+  overflow: hidden;
+  border-right: 2px solid #607b96;
+  white-space: nowrap;
+  animation: typewriter 2s steps(40, end), blinkCursor 1s step-end infinite;
+}
+
+.animate-fadeInIDE {
+  animation: fadeInIDE 0.3s ease-out;
+}
+
+.animate-slideInFromTop {
+  animation: slideInFromTop 0.4s ease-out;
+}
+
+.animate-slideInFromLeft {
+  animation: slideInFromLeft 0.4s ease-out;
+}
+
+.animate-slideInFromRight {
+  animation: slideInFromRight 0.4s ease-out;
+}
+
+.animate-highlight {
+  animation: highlight 0.6s ease-out;
+}
+
+.animate-terminalBlink {
+  animation: terminalBlink 2s infinite;
+}
+
+.animate-smoothTransition {
+  animation: smoothTransition 0.3s ease-out;
+}
+
+/* IDE-specific hover effects */
+.ide-hover {
+  transition: all 0.2s ease;
+}
+
+.ide-hover:hover {
+  background-color: rgba(255, 165, 95, 0.05);
+  border-left: 2px solid #ffa55f;
+}
+
+.ide-active {
+  background-color: rgba(255, 165, 95, 0.1);
+  border-left: 2px solid #ffa55f;
+}
