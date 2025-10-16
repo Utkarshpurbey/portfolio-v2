@@ -32,7 +32,7 @@ const MyHeader = () => {
               className={`h-full flex items-center px-6 
                 border-r border-borderColor ide-hover
                 ${activeTab === ele
-                  ? "text-white vs-code-400 border-b-2 border-b-[#ffa55f] ide-active"
+                  ? "text-white vs-code-400 border-b-2 border-b-[#ffa55f]"
                   : "vs-code-300"
                 }`}
               style={{ animationDelay: `${index * 0.05}s` }}
@@ -42,7 +42,7 @@ const MyHeader = () => {
           ))}
         </div>
 
-        <div className="hidden md:flex h-full items-center px-4 border-l border-borderColor">
+        <div className="hidden md:flex h-full items-center px-4 border-l border-borderColor" onClick={() => handleTabClick("_contact-me")}>
           <span className="animate-slideInFromRight ide-hover cursor-pointer">_contact-me</span>
         </div>
         <div className="md:hidden flex items-center px-4 h-full border-l border-borderColor">

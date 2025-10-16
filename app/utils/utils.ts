@@ -1,12 +1,14 @@
 import About from "../pages/About";
 import HomePage from "../pages/HomePage";
 import Projects from "../pages/Projects";
+import Contact from "../pages/Contact";
 export const Tabs = ["_hello", "_about-me", "_projects"];
 
 export const componentAsPerTab: any = {
   _hello: HomePage,
   "_about-me": About,
   _projects: Projects,
+  "_contact-me": Contact,
 };
 
 export const codeStyle = {
@@ -14,39 +16,51 @@ export const codeStyle = {
     display: "block",
     overflowX: "auto",
     padding: "0.5em",
-    background: "#011627", // Updated background color
-    color: "#e0e0e0", // Adjusted text color for contrast
+    background: "#1a1a1a", // Dark blue-grey background
+    color: "#5564e8", // Default text color for most elements
   },
-  "hljs-strong": { color: "#ffffff" }, // Strong contrast for bold
-  "hljs-emphasis": { color: "#ffffff", fontStyle: "italic" }, // Same as strong but italic
-  "hljs-bullet": { color: "#80aaff" }, // Bright color for bullets
-  "hljs-quote": { color: "#80aaff" },
-  "hljs-link": { color: "#80aaff" },
-  "hljs-number": { color: "#80aaff" },
-  "hljs-regexp": { color: "#80aaff" },
-  "hljs-literal": { color: "#80aaff" },
-  "hljs-code": { color: "#addb67" }, // Updated greenish for code-like elements
-  "hljs-selector-class": { color: "#addb67" },
-  "hljs-keyword": { color: "#c792ea" }, // Changed to a soft purple for keywords
-  "hljs-selector-tag": { color: "#c792ea" },
-  "hljs-section": { color: "#c792ea" },
-  "hljs-attribute": { color: "#c792ea" },
-  "hljs-name": { color: "#c792ea" },
-  "hljs-variable": { color: "#c792ea" },
-  "hljs-params": { color: "#e0e0e0" }, // Consistent with base color
-  "hljs-string": { color: "#b4f8c8" }, // Brighter green for strings
-  "hljs-subst": { color: "#f6c177" }, // Yellow/orange for substitutions
-  "hljs-type": { color: "#f6c177" },
-  "hljs-built_in": { color: "#f6c177" },
-  "hljs-builtin-name": { color: "#f6c177" },
-  "hljs-symbol": { color: "#f6c177" },
-  "hljs-selector-id": { color: "#f6c177" },
-  "hljs-selector-attr": { color: "#f6c177" },
-  "hljs-selector-pseudo": { color: "#f6c177" },
-  "hljs-template-tag": { color: "#f6c177" },
-  "hljs-template-variable": { color: "#f6c177" },
-  "hljs-addition": { color: "#f6c177" },
-  "hljs-comment": { color: "#5c5c5c" }, // Darker gray for comments
-  "hljs-deletion": { color: "#5c5c5c" },
-  "hljs-meta": { color: "#5c5c5c" },
+  "hljs-subst": { color: "#607b96" },
+  "hljs-comment": { color: "#5c5c5c" },
+  "hljs-keyword": { color: "#c792ea", fontWeight: "bold" },
+  "hljs-attribute": { color: "#c792ea", fontWeight: "bold" },
+  "hljs-selector-tag": { color: "#c792ea", fontWeight: "bold" },
+  "hljs-meta-keyword": { color: "#c792ea", fontWeight: "bold" },
+  "hljs-doctag": { color: "#c792ea", fontWeight: "bold" },
+  "hljs-name": { color: "#c792ea", fontWeight: "bold" },
+  "hljs-type": { color: "#5564e8" },
+  "hljs-string": { color: "#ffa55f" },
+  "hljs-number": { color: "#607b96 !important" },
+  "hljs-selector-id": { color: "#5564e8" },
+  "hljs-selector-class": { color: "#5564e8" },
+  "hljs-quote": { color: "#5564e8" },
+  "hljs-template-tag": { color: "#5564e8" },
+  "hljs-deletion": { color: "#5564e8" },
+  "hljs-title": { color: "#5564e8", fontWeight: "bold" },
+  "hljs-section": { color: "#5564e8", fontWeight: "bold" },
+  "hljs-regexp": { color: "#5564e8" },
+  "hljs-symbol": { color: "#5564e8" },
+  "hljs-variable": { color: "#5564e8" },
+  "hljs-params": { color: "#5564e8" },
+  "hljs-template-variable": { color: "#5564e8" },
+  "hljs-attr": { color: "#5564e8" },
+  "hljs-property": { color: "#5564e8" },
+  "hljs-variable.language_": { color: "#5564e8" },
+  "hljs-variable.constant_": { color: "#5564e8" },
+  "hljs-variable.other_": { color: "#5564e8" },
+  "hljs-variable.parameter_": { color: "#5564e8" },
+  "hljs-variable.function_": { color: "#5564e8" },
+  "hljs-link": { color: "#5564e8" },
+  "hljs-selector-attr": { color: "#5564e8" },
+  "hljs-selector-pseudo": { color: "#5564e8" },
+  "hljs-literal": { color: "#5564e8" },
+  "hljs-title.function_": { color: "#5564e8" },
+  "hljs-title.class_": { color: "#5564e8" },
+  "hljs-built_in": { color: "#c792ea" },
+  "hljs-bullet": { color: "#c792ea" },
+  "hljs-code": { color: "#c792ea" },
+  "hljs-addition": { color: "#c792ea" },
+  "hljs-meta": { color: "#5564e8" },
+  "hljs-meta-string": { color: "#5564e8" },
+  "hljs-emphasis": { fontStyle: "italic" },
+  "hljs-strong": { fontWeight: "bold" },
 };
