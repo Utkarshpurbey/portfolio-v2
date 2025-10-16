@@ -5,14 +5,14 @@ export interface CodeTheme {
     fontSize: string;
     fontFamily: string;
     lineHeight: string;
-    fontWeight: string;
+    fontWeight: "normal" | "bold" | "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
   };
   styles: Array<{
     types: string[];
     style: {
       color: string;
-      fontWeight?: string;
-      fontStyle?: string;
+      fontWeight?: "normal" | "bold" | "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+      fontStyle?: "normal" | "italic";
     };
   }>;
 }
