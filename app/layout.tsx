@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import MyHeader from "./components/MyHeader";
+import PageIndicator from "./components/PageIndicator";
 import { Providers } from "./components/Provider";
 import { Inconsolata } from "next/font/google";
 import FooterWrapper from "./components/FooterWrapper";
@@ -16,7 +17,11 @@ export const metadata: Metadata = {
   title: "Utkarsh's Areana",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -25,9 +30,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="h-screen flex items-center justify-center p-6 select-none animate-fadeInIDE">
             <div className="bg-[#011627] relative w-full h-full rounded-md border-borderColor border-2 animate-smoothTransition">
               <MyHeader />
-              <div className="animate-fadeInIDE">
-                {children}
-              </div>
+              <PageIndicator />
+              <div className="animate-fadeInIDE">{children}</div>
               <FooterWrapper />
             </div>
           </div>

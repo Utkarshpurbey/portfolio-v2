@@ -1,4 +1,3 @@
-
 "use client";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -9,7 +8,7 @@ const ResolutionListener = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      const isMobile = window.innerWidth < 768; 
+      const isMobile = window.innerWidth < 768;
       dispatch(setIsMobile(isMobile));
     };
 

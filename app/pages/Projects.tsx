@@ -41,38 +41,37 @@ const Projects = () => {
   }, [selectedOptions]);
 
   const Options = () => {
-    return (<div className="">
-      {" "}
-      {techStackArray?.map((i, index) => {
-        const Icon = ICON_MAP[i]?.Icon;
-        return (
-          <div key={index} className="flex items-center my-3 mr-2">
-            <CustomCheckbox
-              checked={selectedOptions.includes(i)}
-              onChange={() => handleCheckboxChange(i)}
-            />
-            {Icon && (
-              <Icon
-                size={20}
-                className="mx-3"
-                color={
-                  selectedOptions.includes(i) ? "#607b96" : "#273e53"
-                }
+    return (
+      <div className="">
+        {" "}
+        {techStackArray?.map((i, index) => {
+          const Icon = ICON_MAP[i]?.Icon;
+          return (
+            <div key={index} className="flex items-center my-3 mr-2">
+              <CustomCheckbox
+                checked={selectedOptions.includes(i)}
+                onChange={() => handleCheckboxChange(i)}
               />
-            )}
-            <label
-              className={`${selectedOptions.includes(i)
-                ? "text-white"
-                : "text-current"
+              {Icon && (
+                <Icon
+                  size={20}
+                  className="mx-3"
+                  color={selectedOptions.includes(i) ? "#607b96" : "#273e53"}
+                />
+              )}
+              <label
+                className={`${
+                  selectedOptions.includes(i) ? "text-white" : "text-current"
                 }`}
-            >
-              {i}
-            </label>
-          </div>
-        );
-      })}
-    </div>)
-  }
+              >
+                {i}
+              </label>
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
 
   return (
     <div className="flex w-full h-[calc(100vh-100px)] animate-fadeInIDE md:flex-row flex-col">
@@ -85,24 +84,31 @@ const Projects = () => {
               </HamburgerItem>
             </div>
           </SidePanel>
-          <div className="w-full overflow-y-auto animate-slideInFromRight">
+          <div className="w-full md:overflow-y-auto overflow-y-auto animate-slideInFromRight">
             {selectedOptions?.length > 0 && (
               <div className="w-full text-sm animate-slideInFromTop">
                 <div className="flex items-center border-r border-borderColor w-fit">
                   {selectedOptions?.map((item, index) => {
                     return (
                       <div key={index} className="px-2 py-2 font-400">
-                        {selectedOptions?.length - 1 !== index ? `${item}; ` : item}
+                        {selectedOptions?.length - 1 !== index
+                          ? `${item}; `
+                          : item}
                       </div>
                     );
                   })}
-                  <div className="pr-2 cursor-pointer ide-hover" onClick={() => setSelectedOptions([])}>
+                  <div
+                    className="pr-2 cursor-pointer ide-hover"
+                    onClick={() => setSelectedOptions([])}
+                  >
                     <FaTimes size={14} />
                   </div>
                 </div>
               </div>
             )}
-            <div className={`${selectedOptions?.length > 0 ? '' : 'pt-8'} flex flex-wrap pb-10`}>
+            <div
+              className={`${selectedOptions?.length > 0 ? "" : "pt-8"} flex flex-wrap pb-10`}
+            >
               {projectsToDisplay.map((project, index) => (
                 <ProjectTile
                   key={index}

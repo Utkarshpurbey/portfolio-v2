@@ -60,10 +60,12 @@ body {
 }
 
 @keyframes blinkCursor {
-  0%, 50% {
+  0%,
+  50% {
     border-right-color: #607b96;
   }
-  51%, 100% {
+  51%,
+  100% {
     border-right-color: transparent;
   }
 }
@@ -123,10 +125,12 @@ body {
 }
 
 @keyframes terminalBlink {
-  0%, 50% {
+  0%,
+  50% {
     opacity: 1;
   }
-  51%, 100% {
+  51%,
+  100% {
     opacity: 0.3;
   }
 }
@@ -147,7 +151,9 @@ body {
   overflow: hidden;
   border-right: 2px solid #607b96;
   white-space: nowrap;
-  animation: typewriter 2s steps(40, end), blinkCursor 1s step-end infinite;
+  animation:
+    typewriter 2s steps(40, end),
+    blinkCursor 1s step-end infinite;
 }
 
 .animate-fadeInIDE {

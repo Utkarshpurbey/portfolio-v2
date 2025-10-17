@@ -91,16 +91,16 @@ export const projects = [
     title: "Password Generator",
     description:
       "A customizable tool for generating strong, random passwords with adjustable length and character sets.",
-    imageUrl: "public/assets/password-generator.png",
+    imageUrl: "/assets/password-generator.png",
     tags: "// _utility-tools",
     buttonText: "view-project",
     techStack: ["JavaScript", "HTML", "CSS"],
-    githubUrl: "https://github.com/Utkarshpurbey/Password-Generator-By-Utkarsh-Purbey",
-  }
+    githubUrl:
+      "https://github.com/Utkarshpurbey/Password-Generator-By-Utkarsh-Purbey",
+  },
 ];
 
-
- export const techStackArray = [
+export const techStackArray = [
   "React",
   "TypeScript",
   "C++",
@@ -109,5 +109,5 @@ export const projects = [
   "Charts",
   "PHP",
   "MySQL",
-  "HTML"
+  "HTML",
 ];

@@ -24,31 +24,33 @@ const CodeHighlighter: React.FC<CodeHighlighterProps> = ({
   const selectedTheme = customTheme || themes[theme];
 
   return (
-    <Highlight
-      code={code}
-      language={language}
-      theme={selectedTheme}
-    >
-      {({ className: highlightClassName, style: highlightStyle, tokens, getLineProps, getTokenProps }) => (
-        <pre 
-          className={`${highlightClassName} ${className}`} 
-          style={{ 
-            ...highlightStyle, 
-            margin: 0, 
+    <Highlight code={code} language={language} theme={selectedTheme}>
+      {({
+        className: highlightClassName,
+        style: highlightStyle,
+        tokens,
+        getLineProps,
+        getTokenProps,
+      }) => (
+        <pre
+          className={`${highlightClassName} ${className}`}
+          style={{
+            ...highlightStyle,
+            margin: 0,
             background: "transparent",
-            ...style 
+            ...style,
           }}
         >
           {tokens.map((line, i) => (
             <div key={i} {...getLineProps({ line })}>
               {showLineNumbers && (
-                <span 
-                  style={{ 
-                    color: "#5c5c5c", 
-                    marginRight: "1rem", 
-                    userSelect: "none", 
-                    minWidth: "2rem", 
-                    display: "inline-block" 
+                <span
+                  style={{
+                    color: "#5c5c5c",
+                    marginRight: "1rem",
+                    userSelect: "none",
+                    minWidth: "2rem",
+                    display: "inline-block",
                   }}
                 >
                   {i + 1}

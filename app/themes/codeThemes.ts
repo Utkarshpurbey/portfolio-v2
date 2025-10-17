@@ -5,13 +5,35 @@ export interface CodeTheme {
     fontSize: string;
     fontFamily: string;
     lineHeight: string;
-    fontWeight: "normal" | "bold" | "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+    fontWeight:
+      | "normal"
+      | "bold"
+      | "100"
+      | "200"
+      | "300"
+      | "400"
+      | "500"
+      | "600"
+      | "700"
+      | "800"
+      | "900";
   };
   styles: Array<{
     types: string[];
     style: {
       color: string;
-      fontWeight?: "normal" | "bold" | "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+      fontWeight?:
+        | "normal"
+        | "bold"
+        | "100"
+        | "200"
+        | "300"
+        | "400"
+        | "500"
+        | "600"
+        | "700"
+        | "800"
+        | "900";
       fontStyle?: "normal" | "italic";
     };
   }>;
@@ -22,7 +44,8 @@ export const defaultTheme: CodeTheme = {
     color: "#5564e8",
     backgroundColor: "transparent",
     fontSize: "16px",
-    fontFamily: "'Fira Code', 'JetBrains Mono', 'Cascadia Code', 'SF Mono', Monaco, Consolas, 'Courier New', monospace",
+    fontFamily:
+      "'Fira Code', 'JetBrains Mono', 'Cascadia Code', 'SF Mono', Monaco, Consolas, 'Courier New', monospace",
     lineHeight: "1.5",
     fontWeight: "400",
   },
@@ -41,7 +64,15 @@ export const defaultTheme: CodeTheme = {
       },
     },
     {
-      types: ["property", "tag", "boolean", "number", "constant", "symbol", "deleted"],
+      types: [
+        "property",
+        "tag",
+        "boolean",
+        "number",
+        "constant",
+        "symbol",
+        "deleted",
+      ],
       style: {
         color: "#607b96",
       },
@@ -85,7 +116,8 @@ export const darkTheme: CodeTheme = {
     color: "#e6e6e6",
     backgroundColor: "transparent",
     fontSize: "16px",
-    fontFamily: "'Fira Code', 'JetBrains Mono', 'Cascadia Code', 'SF Mono', Monaco, Consolas, 'Courier New', monospace",
+    fontFamily:
+      "'Fira Code', 'JetBrains Mono', 'Cascadia Code', 'SF Mono', Monaco, Consolas, 'Courier New', monospace",
     lineHeight: "1.5",
     fontWeight: "400",
   },
@@ -104,7 +136,15 @@ export const darkTheme: CodeTheme = {
       },
     },
     {
-      types: ["property", "tag", "boolean", "number", "constant", "symbol", "deleted"],
+      types: [
+        "property",
+        "tag",
+        "boolean",
+        "number",
+        "constant",
+        "symbol",
+        "deleted",
+      ],
       style: {
         color: "#b5cea8",
       },
@@ -148,7 +188,8 @@ export const minimalTheme: CodeTheme = {
     color: "#333333",
     backgroundColor: "transparent",
     fontSize: "16px",
-    fontFamily: "'Fira Code', 'JetBrains Mono', 'Cascadia Code', 'SF Mono', Monaco, Consolas, 'Courier New', monospace",
+    fontFamily:
+      "'Fira Code', 'JetBrains Mono', 'Cascadia Code', 'SF Mono', Monaco, Consolas, 'Courier New', monospace",
     lineHeight: "1.5",
     fontWeight: "400",
   },
@@ -167,7 +208,15 @@ export const minimalTheme: CodeTheme = {
       },
     },
     {
-      types: ["property", "tag", "boolean", "number", "constant", "symbol", "deleted"],
+      types: [
+        "property",
+        "tag",
+        "boolean",
+        "number",
+        "constant",
+        "symbol",
+        "deleted",
+      ],
       style: {
         color: "#0066cc",
       },

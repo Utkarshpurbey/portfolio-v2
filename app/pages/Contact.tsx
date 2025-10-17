@@ -4,19 +4,18 @@ import SidePanel from "../components/SidePanel";
 import HamburgerItem from "../components/HamburgerItem";
 import { useSelector } from "react-redux";
 import { IRootState } from "../Slice/store";
-import { FaEnvelope, FaPhone, FaExternalLinkAlt, FaYoutube, FaInstagram, FaTwitch } from "react-icons/fa";
+import { FaEnvelope, FaPhone, FaExternalLinkAlt } from "react-icons/fa";
 
-// Memoized ContactsSidebar component to prevent unnecessary re-renders
 const ContactsSidebar = memo(() => (
   <div className="animate-slideInFromLeft">
     <HamburgerItem title={"contacts"} isOpen={false}>
       <div className="py-4 space-y-2">
         <div className="flex items-center space-x-2 text-sm">
-          <FaEnvelope size={12}  />
+          <FaEnvelope size={12} />
           <span>utkarshpurbey@gmail.com</span>
         </div>
         <div className="flex items-center space-x-2 text-sm">
-          <FaPhone size={12}  />
+          <FaPhone size={12} />
           <span>+916379990285</span>
         </div>
       </div>
@@ -25,104 +24,125 @@ const ContactsSidebar = memo(() => (
     <HamburgerItem title={"find-me-also-in"} isOpen={false}>
       <div className="py-4 space-y-2">
         <div className="flex items-center space-x-2 text-sm ide-hover cursor-pointer">
-          <FaExternalLinkAlt size={10}  />
-          <span className="-300 hover:text-white transition-colors duration-300">YouTube channel</span>
+          <FaExternalLinkAlt size={10} />
+          <span className="-300 hover:text-white transition-colors duration-300">
+            YouTube channel
+          </span>
         </div>
         <div className="flex items-center space-x-2 text-sm ide-hover cursor-pointer">
-          <FaExternalLinkAlt size={10}  />
-          <span className="-300 hover:text-white transition-colors duration-300">GuruShots profile</span>
+          <FaExternalLinkAlt size={10} />
+          <span className="-300 hover:text-white transition-colors duration-300">
+            GuruShots profile
+          </span>
         </div>
         <div className="flex items-center space-x-2 text-sm ide-hover cursor-pointer">
-          <FaExternalLinkAlt size={10}  />
-          <span className="-300 hover:text-white transition-colors duration-300">Instagram account</span>
+          <FaExternalLinkAlt size={10} />
+          <span className="-300 hover:text-white transition-colors duration-300">
+            Instagram account
+          </span>
         </div>
         <div className="flex items-center space-x-2 text-sm ide-hover cursor-pointer">
-          <FaExternalLinkAlt size={10}  />
-          <span className="-300 hover:text-white transition-colors duration-300">Twitch profile</span>
+          <FaExternalLinkAlt size={10} />
+          <span className="-300 hover:text-white transition-colors duration-300">
+            Twitch profile
+          </span>
         </div>
       </div>
     </HamburgerItem>
   </div>
 ));
 
-ContactsSidebar.displayName = 'ContactsSidebar';
+ContactsSidebar.displayName = "ContactsSidebar";
 
-// Memoized ContactForm component to prevent unnecessary re-renders
-const ContactForm = memo(({ formData, handleInputChange, handleSubmit }: {
-  formData: { name: string; email: string; message: string };
-  handleInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-  handleSubmit: (e: React.FormEvent) => void;
-}) => (
-  <div className="flex-1 flex items-center justify-center p-4 animate-slideInFromLeft">
-    <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-md">
-      <div>
-        <label className="block text-sm mb-1">_name:</label>
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleInputChange}
-          className="w-full bg-transparent border border-borderColor px-2  text-white focus:outline-none focus:border-primaryOrange py-1 rounded-lg"
-        />
-      </div>
-      
-      <div>
-        <label className="block text-sm mb-1">_email:</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleInputChange}
-          className="w-full bg-transparent border border-borderColor px-2 text-white focus:outline-none focus:border-primaryOrange py-1 rounded-lg"
-        />
-      </div>
-      
-      <div>
-        <label className="block text-sm mb-1">_message:</label>
-        <textarea
-          name="message"
-          value={formData.message}
-          onChange={handleInputChange}
-          rows={6}
-          className="w-full bg-transparent border border-borderColor px-2 py-1 text-white focus:outline-none focus:border-primaryOrange resize-none rounded-lg"
-        />
-      </div>
-      
-      <button
-        type="submit"
-        className="bg-primaryOrange text-primary px-4 py-2 rounded hover:bg-opacity-80 transition-colors duration-300"
+const ContactForm = memo(
+  ({
+    formData,
+    handleInputChange,
+    handleSubmit,
+  }: {
+    formData: { name: string; email: string; message: string };
+    handleInputChange: (
+      e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => void;
+    handleSubmit: (e: React.FormEvent) => void;
+  }) => (
+    <div className="flex-1 flex flex-col items-start justify-start p-4 animate-slideInFromLeft h-full">
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-4 w-full max-w-full sm:max-w-md"
       >
-        submit-message
-      </button>
-    </form>
-  </div>
-));
+        <div className="w-full">
+          <label className="block text-sm mb-1">_name:</label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleInputChange}
+            className="w-full bg-transparent border border-borderColor px-3 py-3 text-white focus:outline-none focus:border-primaryOrange rounded-md"
+          />
+        </div>
 
-ContactForm.displayName = 'ContactForm';
+        <div className="w-full">
+          <label className="block text-sm mb-1">_email:</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            className="w-full bg-transparent border border-borderColor px-3 py-3 text-white focus:outline-none focus:border-primaryOrange rounded-md"
+          />
+        </div>
+
+        <div className="w-full">
+          <label className="block text-sm mb-1">_message:</label>
+          <textarea
+            name="message"
+            value={formData.message}
+            onChange={handleInputChange}
+            rows={6}
+            className="w-full bg-transparent border border-borderColor px-3 py-3 text-white focus:outline-none focus:border-primaryOrange resize-none rounded-md"
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="w-max px-4 py-2 rounded-md text-white bg-[#2b3336] hover:opacity-90 transition-colors duration-200 md:bg-primaryOrange md:text-primary"
+        >
+          submit-message
+        </button>
+      </form>
+    </div>
+  ),
+);
+
+ContactForm.displayName = "ContactForm";
 
 const Contact = () => {
-  const { isMenuOpen, isMobile } = useSelector((state: IRootState) => state.vitalInfo);
+  const { isMenuOpen } = useSelector((state: IRootState) => state.vitalInfo);
   const [formData, setFormData] = useState({
     name: "Binod",
     email: "",
-    message: ""
+    message: "",
   });
 
-  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  }, []);
+  const handleInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const { name, value } = e.target;
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    },
+    [],
+  );
 
-  const handleSubmit = useCallback((e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted:", formData);
-  }, [formData]);
+  const handleSubmit = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
+      console.log("Form submitted:", formData);
+    },
+    [formData],
+  );
 
-  const codeString = useMemo(() => `const button = document.querySelector('#sendBtn');
+  const codeString = useMemo(
+    () => `const button = document.querySelector('#sendBtn');
 const message = {
   name: "${formData.name}",
   email: "${formData.email}",
@@ -132,29 +152,28 @@ const message = {
 
 button.addEventListener('click', () => {
   form.send(message);
-});`, [formData]);
+});`,
+    [formData],
+  );
 
   return (
-    <div className="flex animate-fadeInIDE md:flex-row flex-col h-full">
+    <div className="flex animate-fadeInIDE flex-col md:flex-row md:h-[calc(100vh-100px)] h-auto">
       {!isMenuOpen && (
         <>
           <SidePanel width={20}>
             <ContactsSidebar />
           </SidePanel>
 
-          <div className="flex-1 flex md:flex-row flex-col">
-            {/* Contact Form Section */}
-            <ContactForm 
+          <div className="flex-1 flex md:flex-row flex-col h-full">
+            <ContactForm
               formData={formData}
               handleInputChange={handleInputChange}
               handleSubmit={handleSubmit}
             />
 
-            {/* Separator */}
-            <div className="hidden md:block w-px bg-borderColor"></div>
+            <div className="hidden md:block w-px bg-borderColor self-stretch"></div>
 
-            {/* Code Editor Section - Hidden on Mobile */}
-            <div className="hidden md:flex flex-1 items-center justify-center animate-slideInFromRight">
+            <div className="hidden md:flex flex-1 items-center justify-center animate-slideInFromRight h-full">
               <div className="w-full h-full flex items-center justify-center">
                 <CodeHighlighter
                   code={codeString}

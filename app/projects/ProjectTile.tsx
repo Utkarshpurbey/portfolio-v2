@@ -64,14 +64,16 @@ const ProjectTile: React.FC<Props> = ({
             className="mt-2 p-2 flex flex-col"
             style={{ height: `calc(${height}px - 12vh - 16px)` }}
           >
-            <div className="overflow-y-auto flex-grow flex-col items-center justify-center">{description}</div>
+            <div className="overflow-y-auto flex-grow flex-col items-center justify-center">
+              {description}
+            </div>
             <div>
               <a href={githubUrl} target="_blank" rel="noopener noreferrer">
                 <button className="py-[6px] px-4 bg-[#1c2b3a] rounded-lg hover:bg-[#2c4d6b] text-white font-400">
                   view-project
                 </button>
               </a>
-          </div>
+            </div>
           </div>
         </div>
       </div>

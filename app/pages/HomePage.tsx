@@ -4,21 +4,38 @@ import { useSelector } from "react-redux";
 import { IRootState } from "../Slice/store";
 
 const HomePage = () => {
-  const { isMenuOpen, isMobile } = useSelector((state: IRootState) => state.vitalInfo);
+  const { isMenuOpen, isMobile } = useSelector(
+    (state: IRootState) => state.vitalInfo,
+  );
   return (
     <div className="flex flex-col w-full h-full animate-fadeInIDE">
       {!isMenuOpen && (
         <div className="flex flex-1 flex-row">
-          <div className={`${isMobile ? 'w-full' : 'flex-1'} p-4 animate-slideInFromLeft`}>
+          <div
+            className={`${isMobile ? "w-full" : "flex-1"} p-4 animate-slideInFromLeft`}
+          >
             <div className="animate-fadeInIDE">Today agenda</div>
             <ul className="pl-4">
-              <li className="animate-slideInFromLeft ide-hover cursor-pointer" style={{ animationDelay: '0.05s' }}>Side panel fix in mobile</li>
-              <li className="animate-slideInFromLeft ide-hover cursor-pointer" style={{ animationDelay: '0.1s' }}>Menu mein we have to integrate footer</li>
+              <li
+                className="animate-slideInFromLeft ide-hover cursor-pointer"
+                style={{ animationDelay: "0.05s" }}
+              >
+                Side panel fix in mobile
+              </li>
+              <li
+                className="animate-slideInFromLeft ide-hover cursor-pointer"
+                style={{ animationDelay: "0.1s" }}
+              >
+                Menu mein we have to integrate footer
+              </li>
             </ul>
           </div>
 
           {!isMobile && (
-            <div className="flex-1 min-w-[50%] animate-slideInFromRight" id="game-container">
+            <div
+              className="flex-1 min-w-[50%] animate-slideInFromRight"
+              id="game-container"
+            >
               <div
                 className="h-[60vh] flex-col w-full flex items-center justify-center"
                 style={{
