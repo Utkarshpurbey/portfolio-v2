@@ -91,7 +91,7 @@ export const projects = [
     title: "Password Generator",
     description:
       "A customizable tool for generating strong, random passwords with adjustable length and character sets.",
-    imageUrl: "/assets/password-generator.png",
+    imageUrl: "public/assets/password-generator.png",
     tags: "// _utility-tools",
     buttonText: "view-project",
     techStack: ["JavaScript", "HTML", "CSS"],

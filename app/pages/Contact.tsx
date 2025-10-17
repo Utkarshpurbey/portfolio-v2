@@ -155,13 +155,13 @@ button.addEventListener('click', () => {
 
             {/* Code Editor Section - Hidden on Mobile */}
             <div className="hidden md:flex flex-1 items-center justify-center animate-slideInFromRight">
-              <div className="w-full h-full">
+              <div className="w-full h-full flex items-center justify-center">
                 <CodeHighlighter
                   code={codeString}
                   language="javascript"
                   theme="default"
                   showLineNumbers={true}
-                  style={{ height: "100%" }}
+                  style={{ height: "50%" }}
                 />
               </div>
             </div>

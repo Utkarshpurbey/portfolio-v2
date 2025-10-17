@@ -20,7 +20,7 @@ const MyHeader = () => {
 
   return (
     <div className="relative w-full flex items-center border-b border-borderColor border-t-0 h-10 animate-slideInFromTop">
-      <div className="w-1/2 md:w-1/5 h-full flex items-center border-r border-borderColor px-4">
+      <div className="w-1/2 md:w-1/5 h-full flex items-center md:border-r border-borderColor px-4">
         <span className="animate-fadeInIDE">utkarsh-purbey</span>
       </div>
       <div className="flex w-1/2 md:w-4/5 justify-end md:justify-between items-center h-full">
@@ -45,7 +45,7 @@ const MyHeader = () => {
         <div className="hidden md:flex h-full items-center px-4 border-l border-borderColor" onClick={() => handleTabClick("_contact-me")}>
           <span className="animate-slideInFromRight ide-hover cursor-pointer">_contact-me</span>
         </div>
-        <div className="md:hidden flex items-center px-4 h-full border-l border-borderColor">
+        <div className="md:hidden flex items-center px-4 h-full md:border-l border-borderColor">
           {!isMenuOpen ? <FiMenu
             className="cursor-pointer ide-hover animate-fadeInIDE"
             onClick={() => reduxDispatch(setIsMenuOpen(!isMenuOpen))}

@@ -12,10 +12,8 @@ const HomePage = () => {
           <div className={`${isMobile ? 'w-full' : 'flex-1'} p-4 animate-slideInFromLeft`}>
             <div className="animate-fadeInIDE">Today agenda</div>
             <ul className="pl-4">
-              <li className="animate-slideInFromLeft ide-hover cursor-pointer" style={{ animationDelay: '0.05s' }}>Making header and footer better</li>
-              <li className="animate-slideInFromLeft ide-hover cursor-pointer" style={{ animationDelay: '0.1s' }}>Working on color and font</li>
-              <li className="animate-slideInFromLeft ide-hover cursor-pointer" style={{ animationDelay: '0.15s' }}>Project page mein card ko structure krna and </li>
-              <li className="animate-slideInFromLeft ide-hover cursor-pointer" style={{ animationDelay: '0.2s' }}>Side Panel ko common banana</li>
+              <li className="animate-slideInFromLeft ide-hover cursor-pointer" style={{ animationDelay: '0.05s' }}>Side panel fix in mobile</li>
+              <li className="animate-slideInFromLeft ide-hover cursor-pointer" style={{ animationDelay: '0.1s' }}>Menu mein we have to integrate footer</li>
             </ul>
           </div>
 
