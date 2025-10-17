@@ -4,7 +4,7 @@ export const projects = [
     description:
       "A responsive developer portfolio built with TypeScript and React, featuring a clean design, optimized performance, and a showcase of skills and projects.",
     imageUrl:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop",
+      "https://cdn.leonardo.ai/users/6615de71-0bbc-4fe5-92d8-093fbdfe9867/generations/41f57918-0a8b-4fd1-b2ac-ca1f27843036/segments/1:4:1/Lucid_Origin_PromptA_sleek_modern_developer_portfolio_website__0.jpg",
     tags: "// _portfolio",
     buttonText: "view-project",
     techStack: ["React", "TypeScript"],
@@ -15,7 +15,7 @@ export const projects = [
     description:
       "A collection of LeetCode solutions in C++ with detailed explanations to strengthen problem-solving and algorithmic thinking.",
     imageUrl:
-      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=300&fit=crop",
+      "https://cdn.leonardo.ai/users/6615de71-0bbc-4fe5-92d8-093fbdfe9867/generations/1f0ab2ad-6df9-6b40-8c16-5488961d532a/gemini-2.5-flash-image-preview_A_sleek_modern_3D_digital_artwork_in_blue_and_purple_neon_tones_showcasing_a_minimalist_developer-0.jpg",
     tags: "// _algorithms",
     buttonText: "view-project",
     techStack: ["C++", "Algorithms"],
@@ -37,7 +37,7 @@ export const projects = [
     description:
       "A full-stack URL shortener with custom alias support, click analytics, and an intuitive dashboard for managing links.",
     imageUrl:
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop",
+      "https://cdn.leonardo.ai/users/6a014396-c5b5-4b04-a37e-816c7d30d1d3/generations/e34c371b-8904-436d-9652-d90ce582419b/segments/2:4:1/Lucid_Origin_A_symbolic_representation_of_a_URL_shortener_icon_1.jpg",
     tags: "// _web-development",
     buttonText: "view-project",
     techStack: ["Node.js", "Express"],
@@ -59,7 +59,7 @@ export const projects = [
     description:
       "A frontend application for visualizing market trends with interactive charts, dynamic dashboards, and data exploration tools.",
     imageUrl:
-      "https://images.unsplash.com/photo-1543286386-713bdd548da4?w=400&h=300&fit=crop",
+      "https://cdn.leonardo.ai/users/6c85eb2f-050a-497a-ab9b-a3d041485311/generations/8c5b1681-7633-4158-a317-2a42984e75c0/segments/4:4:1/Flux_Dev_A_highend_3D_digital_artwork_showcasing_a_fullstack_U_3.jpg",
     tags: "// _data-visualization",
     buttonText: "view-project",
     techStack: ["React", "Charts"],
@@ -91,36 +91,12 @@ export const projects = [
     title: "Password Generator",
     description:
       "A customizable tool for generating strong, random passwords with adjustable length and character sets.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=400&h=300&fit=crop",
+    imageUrl: "/assets/image.png",
     tags: "// _utility-tools",
     buttonText: "view-project",
-    techStack: ["JavaScript", "HTML"],
-    githubUrl:
-      "https://github.com/Utkarshpurbey/Password-Generator-By-Utkarsh-Purbey",
-  },
-  {
-    title: "Simon Game",
-    description:
-      "A classic Simon memory game recreated with JavaScript, featuring sound feedback and an interactive UI.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=400&h=300&fit=crop",
-    tags: "// _game-development",
-    buttonText: "view-project",
-    techStack: ["JavaScript", "HTML"],
-    githubUrl: "https://github.com/Utkarshpurbey/Simon-Game-By-Utkarsh-Purbey",
-  },
-  {
-    title: "Dice Game",
-    description:
-      "An interactive dice rolling game where players compete with randomized outcomes and score tracking.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=400&h=300&fit=crop",
-    tags: "// _game-development",
-    buttonText: "view-project",
-    techStack: ["JavaScript", "HTML"],
-    githubUrl: "https://github.com/Utkarshpurbey/Dice-Game",
-  },
+    techStack: ["JavaScript", "HTML", "CSS"],
+    githubUrl: "https://github.com/Utkarshpurbey/Password-Generator-By-Utkarsh-Purbey",
+  }
 ];
 
 
