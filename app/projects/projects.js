@@ -44,7 +44,7 @@ export const projects = [
     githubUrl: "https://github.com/Utkarshpurbey/url_shortener",
   },
   {
-    title: "Simon Game Vite",
+    title: "Simon Game",
     description:
       "A memory game built with Vite and TypeScript, featuring animations, sound effects, and progressively challenging gameplay.",
     imageUrl:
