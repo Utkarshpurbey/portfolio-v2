@@ -107,7 +107,7 @@ const Projects = () => {
               </div>
             )}
             <div
-              className={`${selectedOptions?.length > 0 ? "" : "pt-8"} flex flex-wrap px-2 md:px-0 max-w-full md:overflow-visible overflow-y-auto min-h-0 flex-grow`}
+              className={`${selectedOptions?.length > 0 ? "" : "md:pt-8"} flex flex-wrap px-2 md:px-0 max-w-full md:overflow-visible overflow-y-auto min-h-0 flex-grow`}
             >
               {projectsToDisplay.map((project, index) => (
                 <ProjectTile
