@@ -36,7 +36,7 @@ const ProjectTile: React.FC<Props> = ({
         style={{ height: `${height}px` }}
       >
         <div>
-          <div className="h-[12vh] w-full relative">
+          <div className="h-[15vh] w-full relative">
             <Image
               src={imageUrl}
               layout="fill"
@@ -64,7 +64,7 @@ const ProjectTile: React.FC<Props> = ({
           </div>
           <div
             className="mt-2 p-2 flex flex-col"
-            style={{ height: `calc(${height}px - 12vh - 16px)` }}
+            style={{ height: `calc(${height}px - 15vh - 16px)` }}
           >
             <div className="overflow-y-auto flex-grow flex-col items-center justify-center">
               {description}

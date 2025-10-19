@@ -15,7 +15,7 @@ const HamburgerItem = ({ title = "", isOpen = true, children }: Iprops) => {
   const [shouldOpen, setShouldOpen] = useState(isOpen);
   const { isMobile } = useSelector((state: IRootState) => state.vitalInfo);
   return (
-    <div className="w-full py-[2px]">
+    <div className="w-full py-1">
       <div
         className="flex w-full items-center py-[2px]  md:py-2 cursor-pointer border-b border-borderColor px-4 md:bg-transparent bg-[#1e2d3d] rounded w-full"
         onClick={() => {
