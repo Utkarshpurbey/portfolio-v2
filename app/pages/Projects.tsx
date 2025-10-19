@@ -74,7 +74,7 @@ const Projects = () => {
   };
 
   return (
-    <div className="flex w-full h-[calc(100vh-100px)] animate-fadeInIDE md:flex-row flex-col">
+    <div className="flex w-full h-[calc(100vh-200px)] md:h-[calc(100vh-100px)] animate-fadeInIDE md:flex-row flex-col">
       {!isMenuOpen && (
         <>
           <SidePanel>
@@ -84,7 +84,7 @@ const Projects = () => {
               </HamburgerItem>
             </div>
           </SidePanel>
-          <div className="w-full md:overflow-y-auto overflow-y-auto animate-slideInFromRight">
+          <div className="w-full md:overflow-y-auto overflow-y-auto animate-slideInFromRight overflow-x-hidden h-full md:max-h-none max-h-[calc(100vh-200px)] flex flex-col">
             {selectedOptions?.length > 0 && (
               <div className="w-full text-sm animate-slideInFromTop">
                 <div className="flex items-center border-r border-borderColor w-fit">
@@ -107,7 +107,7 @@ const Projects = () => {
               </div>
             )}
             <div
-              className={`${selectedOptions?.length > 0 ? "" : "pt-8"} flex flex-wrap pb-10`}
+              className={`${selectedOptions?.length > 0 ? "" : "pt-8"} flex flex-wrap px-2 md:px-0 max-w-full md:overflow-visible overflow-y-auto min-h-0 flex-grow`}
             >
               {projectsToDisplay.map((project, index) => (
                 <ProjectTile
@@ -119,6 +119,7 @@ const Projects = () => {
                   techStack={project.techStack}
                   githubUrl={project.githubUrl}
                   height={320}
+                  customClass={index === projectsToDisplay.length - 1 ? "md:pb-16" : ""}
                 />
               ))}
             </div>

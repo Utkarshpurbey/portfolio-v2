@@ -3,9 +3,11 @@ import React from "react";
 const SidePanel = ({
   children,
   width = 25,
+  isSticky = false,
 }: {
   children: React.ReactNode;
   width?: number;
+  isSticky?: boolean;
 }) => {
   const getWidthClass = () => {
     if (width === 20) return "md:w-1/5";
@@ -22,10 +24,11 @@ const SidePanel = ({
         w-full
         ${getWidthClass()}
         h-auto
-        md:h-full
+        md:h-[calc(100vh-100px)]
         flex flex-col
         md:border-r md:border-borderColor
         md:overflow-y-auto overflow-visible
+        ${isSticky ? 'sticky top-0 z-10 md:static' : ''}
       `}
     >
       {children}

@@ -10,6 +10,7 @@ interface Props {
   techStack: string[];
   height?: number;
   githubUrl: string;
+  customClass?: string;
 }
 
 const ProjectTile: React.FC<Props> = ({
@@ -20,9 +21,10 @@ const ProjectTile: React.FC<Props> = ({
   techStack,
   height = 100,
   githubUrl,
+  customClass ='',
 }) => {
   return (
-    <div className="w-full md:w-1/2 lg:w-1/3 p-4">
+    <div className={`w-full md:w-1/2 lg:w-1/3 p-2 md:p-4 max-w-full overflow-hidden flex-shrink-0 ${customClass}`}>
       <div className="flex py-1 px-2">
         <div className="text-[#5565e8] font-semibold">{title}</div>
         <div className="flex">
@@ -30,7 +32,7 @@ const ProjectTile: React.FC<Props> = ({
         </div>
       </div>
       <div
-        className="border-borderColor border rounded-2xl bg-[#011221]"
+        className="border-borderColor border rounded-2xl bg-[#011221] overflow-hidden"
         style={{ height: `${height}px` }}
       >
         <div>
