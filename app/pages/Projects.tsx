@@ -19,7 +19,7 @@ type Project = {
 };
 
 const Projects = () => {
-  const { isMenuOpen } = useSelector((state: IRootState) => state.vitalInfo);
+  const { isMenuOpen,isMobile } = useSelector((state: IRootState) => state.vitalInfo);
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
   const handleCheckboxChange = (option) => {
@@ -85,12 +85,12 @@ const Projects = () => {
             </div>
           </SidePanel>
           <div className="w-full md:overflow-y-auto overflow-y-auto animate-slideInFromRight overflow-x-hidden h-full md:max-h-none max-h-[calc(100vh-200px)] flex flex-col">
-            {selectedOptions?.length > 0 && (
-              <div className="w-full text-sm animate-slideInFromTop">
+            {selectedOptions?.length > 0 && !isMobile && (
+              <div className="w-full text-sm animate-slideInFromTop border-b border-borderColor">
                 <div className="flex items-center border-r border-borderColor w-fit">
                   {selectedOptions?.map((item, index) => {
                     return (
-                      <div key={index} className="px-2 py-2 font-400">
+                      <div key={index} className="px-2 pt-2.5 pb-2.5 text-base font-400">
                         {selectedOptions?.length - 1 !== index
                           ? `${item}; `
                           : item}
