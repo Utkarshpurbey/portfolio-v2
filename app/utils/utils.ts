@@ -2,7 +2,7 @@ import About from "../pages/About";
 import HomePage from "../pages/HomePage";
 import Projects from "../pages/Projects";
 import Contact from "../pages/Contact";
-export const Tabs = ["_hello", "_about-me", "_projects"];
+export { Tabs } from "./tabs";
 
 export const componentAsPerTab: any = {
   _hello: HomePage,

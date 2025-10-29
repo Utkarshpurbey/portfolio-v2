@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import simonPng from "@/public/assets/simon.png";
 import Image from "next/image";
+import { useDispatch } from "react-redux";
+import { setGameScore, resetGameScore } from "../Slice/vitalInfo";
 const colors = ["red", "green", "blue", "yellow"];
 const boxColor = ["bg-red-500", "bg-green-500", "bg-blue-500", "bg-yellow-500"];
 const blinkClass = "opacity-20";
 const Game = () => {
+  const dispatch = useDispatch();
   const [gameSequence, updateGameSequence] = React.useState<any>([]);
   const [userSequence, updateUserSequence] = React.useState<string[]>([]);
   const [hasGameStarted, updateGameStatus] = React.useState<boolean>(false);
@@ -39,14 +42,17 @@ const Game = () => {
 
   const startGame = React.useCallback(() => {
     updateGameStatus(true);
+    dispatch(setGameScore(0));
     generateSequnce();
-  }, [generateSequnce]);
+  }, [generateSequnce, dispatch]);
 
   const captureUserInputandProceed = React.useCallback(
     (length, newUserInput) => {
       if (newUserInput[length - 1] === gameSequence[length - 1]) {
         if (newUserInput.length === gameSequence.length) {
-          updateScore(score + 1);
+          const newScore = score + 1;
+          updateScore(newScore);
+          dispatch(setGameScore(newScore));
           setTimeout(() => {
             if (!hasUserMadeMistake) generateSequnce();
           }, 1000);
@@ -56,7 +62,7 @@ const Game = () => {
         updateUserMistakeStatus(true);
       }
     },
-    [gameSequence, hasUserMadeMistake, generateSequnce, score],
+    [gameSequence, hasUserMadeMistake, generateSequnce, score, dispatch],
   );
 
   const updateUserInput = React.useCallback(
@@ -69,7 +75,10 @@ const Game = () => {
     [noOfPress, userSequence, captureUserInputandProceed],
   );
 
-  const resetGame = () => window?.location.reload();
+  const resetGame = () => {
+    dispatch(resetGameScore());
+    window?.location.reload();
+  };
 
   useEffect(() => {
     if (hasUserMadeMistake) playAudio("wrong");
@@ -137,4 +146,4 @@ const Game = () => {
     </div>
   );
 };
-export default Game;
+export default React.memo(Game);
