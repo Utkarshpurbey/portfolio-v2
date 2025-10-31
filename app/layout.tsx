@@ -14,7 +14,7 @@ const inter = Inconsolata({
 });
 
 export const metadata: Metadata = {
-  title: "Utkarsh's Areana",
+  title: "Utkarsh's Arena",
 };
 
 export default function RootLayout({

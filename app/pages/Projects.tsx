@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import HamburgerItem from "../components/HamburgerItem";
 import { FaTimes } from "react-icons/fa";
 import CustomCheckbox from "../components/CustomCheckbox";
@@ -19,14 +19,23 @@ type Project = {
 };
 
 const Projects = () => {
-  const { isMenuOpen,isMobile } = useSelector((state: IRootState) => state.vitalInfo);
+  const { isMenuOpen, isMobile } = useSelector(
+    (state: IRootState) => state.vitalInfo
+  );
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  const [closeSignal, setCloseSignal] = useState<number>(0);
+
+  useEffect(() => {}, [closeSignal]);
 
   const handleCheckboxChange = (option) => {
+    // trigger close of side panel on mobile after a short delay
+    if (isMobile) {
+      setTimeout(() => setCloseSignal((s) => s + 1), 700);
+    }
     setSelectedOptions((prev) =>
       prev.includes(option)
         ? prev.filter((item) => item !== option)
-        : [...prev, option],
+        : [...prev, option]
     );
   };
 
@@ -35,7 +44,7 @@ const Projects = () => {
       return projects;
     }
     const filteredProjects = selectedOptions.flatMap((item) =>
-      projects.filter((i) => i?.techStack?.includes(item)),
+      projects.filter((i) => i?.techStack?.includes(item))
     );
     return Array.from(new Set(filteredProjects));
   }, [selectedOptions]);
@@ -79,33 +88,44 @@ const Projects = () => {
         <>
           <SidePanel>
             <div className="animate-slideInFromLeft">
-              <HamburgerItem title={"projects"} isOpen={false}>
+              <HamburgerItem
+                title={"projects"}
+                isOpen={true}
+                closeSignal={closeSignal}
+              >
                 <Options />
               </HamburgerItem>
             </div>
           </SidePanel>
           <div className="w-full md:overflow-y-auto overflow-y-auto animate-slideInFromRight overflow-x-hidden h-full md:max-h-none max-h-[calc(100vh-200px)] flex flex-col">
-            {selectedOptions?.length > 0 && !isMobile && (
-              <div className="w-full text-sm animate-slideInFromTop border-b border-borderColor">
-                <div className="flex items-center border-r border-borderColor w-fit">
-                  {selectedOptions?.map((item, index) => {
-                    return (
-                      <div key={index} className="px-2 pt-2.5 pb-2.5 text-base font-400">
-                        {selectedOptions?.length - 1 !== index
-                          ? `${item}; `
-                          : item}
-                      </div>
-                    );
-                  })}
-                  <div
-                    className="pr-2 cursor-pointer ide-hover"
-                    onClick={() => setSelectedOptions([])}
-                  >
-                    <FaTimes size={14} />
-                  </div>
-                </div>
-              </div>
-            )}
+          {selectedOptions?.length > 0 && (
+  isMobile ? (
+    <div className="px-4 py-2 text-lg">
+      <span className="text-white">//projects </span>
+      <span>
+        / {selectedOptions.join("; ")}
+      </span>
+    </div>
+  ) : (
+    <div className="w-full text-sm animate-slideInFromTop border-b border-borderColor">
+      <div className="flex items-center border-r border-borderColor w-fit">
+        {selectedOptions.map((item, index) => (
+          <div key={index} className="px-2 py-2.5 text-base font-400">
+            {item}
+            {index !== selectedOptions.length - 1 && "; "}
+          </div>
+        ))}
+        <div
+          className="pr-2 cursor-pointer ide-hover"
+          onClick={() => setSelectedOptions([])}
+        >
+          <FaTimes size={14} />
+        </div>
+      </div>
+    </div>
+  )
+)}
+
             <div
               className={`${selectedOptions?.length > 0 ? "" : "md:pt-8"} flex flex-wrap px-2 md:px-0 max-w-full md:overflow-visible overflow-y-auto min-h-0 flex-grow`}
             >
@@ -119,7 +139,9 @@ const Projects = () => {
                   techStack={project.techStack}
                   githubUrl={project.githubUrl}
                   height={320}
-                  customClass={index === projectsToDisplay.length - 1 ? "md:pb-16" : ""}
+                  customClass={
+                    index === projectsToDisplay.length - 1 ? "md:pb-16" : ""
+                  }
                 />
               ))}
             </div>

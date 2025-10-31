@@ -1,5 +1,5 @@
 "use client";
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { FaChevronDown, FaChevronRight } from "react-icons/fa";
 import { AiOutlineCaretRight, AiOutlineCaretDown } from "react-icons/ai";
 
@@ -10,9 +10,20 @@ type Iprops = {
   title: string;
   isOpen: Boolean;
   children: ReactNode;
+  closeSignal?: number;
 };
-const HamburgerItem = ({ title = "", isOpen = true, children }: Iprops) => {
-  const [shouldOpen, setShouldOpen] = useState(isOpen);
+const HamburgerItem = ({ title = "", isOpen = true, children, closeSignal }: Iprops) => {
+  const [shouldOpen, setShouldOpen] = useState<boolean>(Boolean(isOpen));
+  useEffect(() => {
+    setShouldOpen(Boolean(isOpen));
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (typeof closeSignal === 'number') {
+      setShouldOpen(false);
+    }
+  }, [closeSignal]);
+  
   const { isMobile } = useSelector((state: IRootState) => state.vitalInfo);
   return (
     <div className="w-full py-1">
@@ -22,21 +33,32 @@ const HamburgerItem = ({ title = "", isOpen = true, children }: Iprops) => {
           setShouldOpen(!shouldOpen);
         }}
       >
-        {shouldOpen ? (
-          <AiOutlineCaretDown size={14} color="white" />
-        ) : (
-          <AiOutlineCaretRight
-            size={14}
-            color={isMobile ? "white" : "#617b96"}
-          />
-        )}
+        <span
+          className={`transition-transform duration-300 `}
+        >
+          {shouldOpen ? (
+            <AiOutlineCaretDown size={14} color="white" />
+          ) : (
+            <AiOutlineCaretRight
+              size={14}
+              color={isMobile ? "white" : "#617b96"}
+            />
+          )}
+        </span>
         <div
           className={`${shouldOpen ? "text-white" : "md:text-[#617b96]"} pl-2 text-lg md:text-base text-white `}
         >
           {title}
         </div>
       </div>
-      <div className="px-4">{shouldOpen && children}</div>
+      <div
+        className={`px-4 overflow-hidden transition-[max-height] duration-300 ease-in-out transition-opacity ${
+          shouldOpen ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
+        }`}
+        aria-expanded={shouldOpen}
+      >
+        {children}
+      </div>
     </div>
   );
 };
