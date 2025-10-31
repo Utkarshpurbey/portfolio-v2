@@ -13,19 +13,23 @@ const Intro: React.FC<{ isMobile: boolean }> = React.memo(({ isMobile }) => {
   return (
     <div className="w-full h-full flex flex-col">
       <div
-        className="flex flex-col justify-between flex-1 md:pl-[15%] pl-[10%] md:pt-[20%] pt-[30%] md:pb-[10%] pb-[50%]"
+        className="flex flex-col justify-center flex-1 md:pl-[12%] pl-[8%] md:pt-0 pt-[10%] md:pb-0 pb-[10%]"
         style={{
           backgroundImage: isMobile ? `url(${bg.src})` : "none",
           backgroundPosition: "top",
           backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
           backdropFilter: "blur(10px)",
         }}
       >
         <div className="text-left text-[#e5e9f0]">
           <div className="font-light text-xl">Hi all. I am</div>
           <div className="text-7xl font-light py-2">
-            <div>Utkarsh</div>
-            <div>Purbey</div>
+            {!isMobile && <div>Utkarsh Purbey</div>}
+            <div className="md:hidden">
+              <div>Utkarsh</div>
+              <div>Purbey</div>
+            </div>
           </div>
           <div className="font-normal text-xl text-[#43D9AD]">
             {`>  Front-end developer`}
@@ -33,7 +37,12 @@ const Intro: React.FC<{ isMobile: boolean }> = React.memo(({ isMobile }) => {
         </div>
       </div>
 
-      <div className="text-left md:pl-[15%] pl-[10%]">
+      <div className="text-left md:pl-[12%] pl-[8%] md:mt-4 mt-2">
+        {!isMobile && (
+          <div className="text-[#9aa7b3] font-mono pb-2">
+            {"// complete the game to continue"}
+          </div>
+        )}
         <div className="text-[#9aa7b3] font-mono">
           {"// find my profile on Github:"}
         </div>
@@ -46,8 +55,13 @@ const Intro: React.FC<{ isMobile: boolean }> = React.memo(({ isMobile }) => {
             <span className="text-[#4D5BCE]">const</span>{" "}
             <span className="text-[#43D9AD]">githubLink</span>{" "}
             <span className="text-[#E99287]">=</span>{" "}
-            <span className="text-[#E99287]">
+            <span className="hidden md:inline text-[#E99287]">
               &quot;https://github.com/Utkarshpurbey&quot;
+            </span>
+            <span className="md:hidden text-[#E99287]">
+              &quot;https://
+              <br />
+              github.com/Utkarshpurbey&quot;
             </span>
           </div>
         </div>
@@ -62,23 +76,20 @@ const RightPanel: React.FC = React.memo(() => {
   const gameScore = useSelector(
     (state: IRootState) => state.vitalInfo.gameScore
   );
-  const TOTAL_POINTS = 10;
+  const TOTAL_POINTS = 5;
 
   return (
-    <div className="flex-1 flex flex-col justify-center text-white font-mono">
+    <div className="flex-1 flex flex-col justify-center text-white">
       <div className="text-lg font-semibold mb-4">How to Play:</div>
-      <ul className="space-y-1 text-sm">
-        {/* 
-        <li>• Press 'A' to start the game</li>
+      <ul className="text-sm">
+        <li>• Press &apos;A&apos; to start the game</li>
         <li>• Watch the sequence of colors</li>
         <li>• Click the colors in the same order</li>
         <li>• Each round adds one more color</li>
-        <li>• Try to get the highest score!</li> 
-        */}
       </ul>
       <div>
-        <div>{"// points left to score"}</div>
-        <div className="mt-2 flex flex-wrap gap-1 items-center">
+        <div className="pt-2">{"// points left to score"}</div>
+        <div className="mt-2 flex flex-wrap gap-2 items-center">
           {Array.from({
             length: Math.max(0, TOTAL_POINTS - (gameScore || 0)),
           }).map((_, idx) => (
@@ -86,10 +97,15 @@ const RightPanel: React.FC = React.memo(() => {
               key={`point-left-${idx}`}
               src={pointsSvg}
               alt="point left"
-              className="w-4 h-4"
+              className="w-6 h-6"
             />
           ))}
         </div>
+      </div>
+      <div className="pt-4">
+        <button className="border border-white border-1 py-1 px-6 rounded-lg text-sm">
+          Skip
+        </button>
       </div>
     </div>
   );
@@ -104,9 +120,17 @@ const HomePageContent: React.FC<{ isMobile: boolean }> = React.memo(
         <div className="flex-1 w-full">
           <Intro isMobile={isMobile} />
         </div>
-        <div className="hidden md:flex md:items-center md:justify-center md:w-[40%] md:pt-[5%]">
+        <div
+          className="hidden md:flex md:items-center md:justify-center md:w-[50%] md:pt-[5%] h-full"
+          style={{
+            backgroundImage: `url(${bg.src})`,
+            backgroundPosition: "top",
+            backgroundSize: " cover",
+            backgroundRepeat: "no-repeat",
+          }}
+        >
           <div
-            className="relative w-[90%] max-w-[600px] h-[90%] max-h-[600px] min-h-[400px] mx-auto mt-[10%] rounded-md p-10"
+            className="relative w-[80%] max-w-[600px] h-[90%] max-h-[450px] min-h-[400px] mx-auto mt-[10%] rounded-md p-10"
             style={{
               backgroundImage: `url(${gameBg.src})`,
               backgroundPosition: "center",
@@ -135,7 +159,12 @@ const HomePageContent: React.FC<{ isMobile: boolean }> = React.memo(
               className="absolute bottom-1 right-1 w-5 h-5"
             />
 
-            <div className="flex gap-4 w-full h-[380px]">
+            <div
+              className="flex gap-4 w-full h-[380px]"
+              style={{
+                backdropFilter: "blur(10px)",
+              }}
+            >
               <div className="w-[214px] h-full">
                 <Game />
               </div>

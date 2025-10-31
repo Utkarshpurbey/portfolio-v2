@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import simonPng from "@/public/assets/simon.png";
 import Image from "next/image";
 import { useDispatch } from "react-redux";
@@ -15,22 +15,57 @@ const Game = () => {
   const [hasUserMadeMistake, updateUserMistakeStatus] =
     React.useState<boolean>(false);
   const [score, updateScore] = useState(0);
+  const [hasUserWon, setHasUserWon] = React.useState<boolean>(false);
+  const audioMapRef = useRef<Record<string, HTMLAudioElement>>({});
+  const audioPrimedRef = useRef<boolean>(false);
 
   const playAudio = React.useCallback((color) => {
-    const sound = new Audio(`../sounds/${color}.mp3`);
-    sound.play();
+    const audioEl = audioMapRef.current[color];
+    if (!audioEl) return;
+    try {
+      audioEl.pause();
+      audioEl.currentTime = 0;
+      audioEl.play().catch(() => {});
+    } catch (e) {
+      // ignore
+    }
+  }, []);
+
+  const primeAudio = React.useCallback(async () => {
+    if (audioPrimedRef.current) return;
+    const entries = Object.values(audioMapRef.current);
+    if (entries.length === 0) return;
+    try {
+      await Promise.all(
+        entries.map(async (a) => {
+          a.muted = true;
+          try {
+            await a.play();
+          } catch {}
+          a.pause();
+          a.currentTime = 0;
+          a.muted = false;
+        })
+      );
+      audioPrimedRef.current = true;
+    } catch {}
   }, []);
 
   const animatePress = React.useCallback(
     (selectedColor) => {
-      const element = document.querySelector(`#id-${selectedColor}`);
+      const element = document.querySelector(`#id-${selectedColor}`) as HTMLElement | null;
       playAudio(selectedColor);
       if (element) {
         element.classList.add(blinkClass);
+        const buttonEl = element.querySelector("button");
+        if (buttonEl) {
+          buttonEl.classList.add("scale-95");
+          setTimeout(() => buttonEl.classList.remove("scale-95"), 120);
+        }
         setTimeout(() => element.classList.remove(blinkClass), 100);
       }
     },
-    [playAudio],
+    [playAudio]
   );
 
   const generateSequnce = React.useCallback(() => {
@@ -41,10 +76,11 @@ const Game = () => {
   }, [animatePress]);
 
   const startGame = React.useCallback(() => {
+    primeAudio();
     updateGameStatus(true);
     dispatch(setGameScore(0));
     generateSequnce();
-  }, [generateSequnce, dispatch]);
+  }, [generateSequnce, dispatch, primeAudio]);
 
   const captureUserInputandProceed = React.useCallback(
     (length, newUserInput) => {
@@ -53,52 +89,100 @@ const Game = () => {
           const newScore = score + 1;
           updateScore(newScore);
           dispatch(setGameScore(newScore));
-          setTimeout(() => {
-            if (!hasUserMadeMistake) generateSequnce();
-          }, 1000);
+          if (newScore >= 5) {
+            setHasUserWon(true);
+            updateUserMistakeStatus(true); // trigger end screen with win message
+          } else {
+            setTimeout(() => {
+              if (!hasUserMadeMistake) generateSequnce();
+            }, 1000);
+          }
           updateUserSequence([]);
         }
       } else {
         updateUserMistakeStatus(true);
       }
     },
-    [gameSequence, hasUserMadeMistake, generateSequnce, score, dispatch],
+    [gameSequence, hasUserMadeMistake, generateSequnce, score, dispatch]
   );
+
+  // Preload audio files from public/sounds
+  useEffect(() => {
+    const sources: Record<string, string> = {
+      red: "/assets/sounds/red.mp3",
+      green: "/assets/sounds/green.mp3",
+      blue: "/assets/sounds/blue.mp3",
+      yellow: "/assets/sounds/yellow.mp3",
+      wrong: "/assets/sounds/wrong.mp3",
+    };
+    const map: Record<string, HTMLAudioElement> = {};
+    Object.entries(sources).forEach(([key, src]) => {
+      const audio = new Audio(src);
+      audio.preload = "auto";
+      map[key] = audio;
+    });
+    audioMapRef.current = map;
+    return () => {
+      Object.values(audioMapRef.current).forEach((a) => {
+        try {
+          a.pause();
+          // @ts-ignore
+          a.src = "";
+        } catch {}
+      });
+    };
+  }, []);
 
   const updateUserInput = React.useCallback(
     (color) => {
+      primeAudio();
+      animatePress(color);
       updateNoOfPress(noOfPress + 1);
       const newUserInput = [...userSequence, color];
       updateUserSequence(newUserInput);
       captureUserInputandProceed(newUserInput.length, newUserInput);
     },
-    [noOfPress, userSequence, captureUserInputandProceed],
+    [noOfPress, userSequence, captureUserInputandProceed, animatePress, primeAudio]
   );
 
-  const resetGame = () => {
-    dispatch(resetGameScore());
-    window?.location.reload();
-  };
+  const restartGame = React.useCallback(() => {
+    // Reset state and immediately start a new round
+    updateGameSequence([]);
+    updateUserSequence([]);
+    updateNoOfPress(0);
+    updateUserMistakeStatus(false);
+    updateScore(0);
+    dispatch(setGameScore(0));
+    updateGameStatus(true);
+    generateSequnce();
+  }, [dispatch, generateSequnce]);
 
   useEffect(() => {
-    if (hasUserMadeMistake) playAudio("wrong");
-  }, [hasUserMadeMistake, playAudio]);
+    if (hasUserMadeMistake && !hasUserWon) playAudio("wrong");
+  }, [hasUserMadeMistake, hasUserWon, playAudio]);
 
   useEffect(() => {
+    if (!hasUserMadeMistake) return;
+    const restartOnKey = () => restartGame();
+    window.addEventListener("keydown", restartOnKey);
+    return () => window.removeEventListener("keydown", restartOnKey);
+  }, [hasUserMadeMistake, restartGame]);
+
+  useEffect(() => {
+    if (hasGameStarted) return;
     const updateGameStatusFunction = (e) => {
       if (e.key === "a" || e.key === "A") {
         startGame();
-        window.removeEventListener("keydown", updateGameStatusFunction);
       }
     };
     window.addEventListener("keydown", updateGameStatusFunction);
     return () =>
       window.removeEventListener("keydown", updateGameStatusFunction);
-  }, [startGame]);
+  }, [startGame, hasGameStarted]);
 
   const showHint = () => {
     gameSequence.forEach((color, index) =>
-      setTimeout(() => animatePress(color), index + 1 * 500),
+      setTimeout(() => animatePress(color), (index + 1) * 500)
     );
   };
 
@@ -117,8 +201,18 @@ const Game = () => {
       ) : (
         <div>
           {hasUserMadeMistake ? (
-            <div className="text-white text-center">
-              Game Over, Try again later. Press any key to continue
+            <div className="h-full flex flex-col justify-center">
+              <div className="flex justify-center pt-8 pb-10">
+                <Image src={simonPng} alt="simon game" height={100} width={100} />
+              </div>
+              <div className="w-full bg-[#011628] py-4 flex items-center justify-center">
+                <div className="text-[#43d9ad] text-2xl tracking-widest">{hasUserWon ? "WELL DONE!" : "GAME OVER!"}</div>
+              </div>
+              <div className="flex-1 flex items-start justify-center pt-8">
+                <button onClick={restartGame} className="text-sm">
+                  start-again
+                </button>
+              </div>
             </div>
           ) : (
             <>
@@ -128,19 +222,21 @@ const Game = () => {
               </button>
             </>
           )}
-          <div className="grid grid-cols-2 gap-5 px-4 py-4">
-            {colors.map((item, index) => (
-              <div
-                key={`id-${item}`}
-                id={`id-${item}`}
-                onClick={() => updateUserInput(item)}
-              >
-                <button
-                  className={`h-[12.5vh] w-full ${boxColor[index]} transform transition duration-200 active:scale-95 rounded-lg`}
-                />
-              </div>
-            ))}
-          </div>
+          {!hasUserMadeMistake && (
+            <div className="grid grid-cols-2 gap-5 px-4 py-4">
+              {colors.map((item, index) => (
+                <div
+                  key={`id-${item}`}
+                  id={`id-${item}`}
+                  onClick={() => updateUserInput(item)}
+                >
+                  <button
+                    className={`h-[12.5vh] w-full ${boxColor[index]} transform transition duration-200 active:scale-95 rounded-lg`}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>
