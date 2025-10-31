@@ -74,3 +74,10 @@ export const isProd = (): boolean => {
   ).toLowerCase();
   return env === "production" || env === "prod";
 };
+
+export const getAssetPath = (path: string): string => {
+  const base = process.env.NEXT_PUBLIC_BASE_PATH || (isProd() ? "/portfolio-v2" : "");
+  if (!path) return base;
+  // Ensure single slash when concatenating
+  return `${base}${path.startsWith("/") ? path : `/${path}`}`;
+};

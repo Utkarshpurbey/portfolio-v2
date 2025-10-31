@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { getAssetPath } from "../utils/utils";
 import simonPng from "@/public/assets/simon.png";
 import Image from "next/image";
 import { useDispatch } from "react-redux";
@@ -109,11 +110,11 @@ const Game = () => {
   // Preload audio files from public/sounds
   useEffect(() => {
     const sources: Record<string, string> = {
-      red: "/assets/sounds/red.mp3",
-      green: "/assets/sounds/green.mp3",
-      blue: "/assets/sounds/blue.mp3",
-      yellow: "/assets/sounds/yellow.mp3",
-      wrong: "/assets/sounds/wrong.mp3",
+      red: getAssetPath("/assets/sounds/red.mp3"),
+      green: getAssetPath("/assets/sounds/green.mp3"),
+      blue: getAssetPath("/assets/sounds/blue.mp3"),
+      yellow: getAssetPath("/assets/sounds/yellow.mp3"),
+      wrong: getAssetPath("/assets/sounds/wrong.mp3"),
     };
     const map: Record<string, HTMLAudioElement> = {};
     Object.entries(sources).forEach(([key, src]) => {
