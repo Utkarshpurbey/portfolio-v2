@@ -23,8 +23,7 @@ const SidePanel = ({
       className={`
         w-full
         ${getWidthClass()}
-        h-auto
-        md:h-[calc(100vh-100px)]
+        md:h-full
         flex flex-col
         md:border-r md:border-borderColor
         md:overflow-y-auto overflow-visible

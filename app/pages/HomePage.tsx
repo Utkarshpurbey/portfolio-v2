@@ -13,7 +13,7 @@ const Intro: React.FC<{ isMobile: boolean }> = React.memo(({ isMobile }) => {
   return (
     <div className="w-full h-full flex flex-col">
       <div
-        className="flex flex-col justify-center flex-1 md:pl-[12%] pl-[8%] md:pt-0 pt-[10%] md:pb-0 pb-[10%]"
+        className="flex flex-col justify-center flex-1 md:pl-[12%] pl-[8%] md:pt-0 pt-[25%] md:pb-0 pb-[30%]"
         style={{
           backgroundImage: isMobile ? `url(${bg.src})` : "none",
           backgroundPosition: "top",

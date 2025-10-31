@@ -28,10 +28,12 @@ export default function RootLayout({
         <Providers>
           <ResolutionListener />
           <div className="h-screen flex items-center justify-center p-6 select-none animate-fadeInIDE">
-            <div className="bg-[#011627] relative w-full h-full rounded-md border-borderColor border-2 animate-smoothTransition">
+            <div className="bg-[#011627] relative w-full h-full rounded-md border-borderColor border-2 animate-smoothTransition flex flex-col overflow-hidden">
               <MyHeader />
               <PageIndicator />
-              <div className="animate-fadeInIDE">{children}</div>
+              <div className="flex-1 overflow-y-auto overflow-x-hidden animate-fadeInIDE ">
+                {children}
+              </div>
               <FooterWrapper />
             </div>
           </div>
