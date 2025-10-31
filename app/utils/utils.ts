@@ -64,3 +64,13 @@ export const codeStyle = {
   "hljs-emphasis": { fontStyle: "italic" },
   "hljs-strong": { fontWeight: "bold" },
 };
+
+export const isProd = (): boolean => {
+  const env = (
+    process.env.NEXT_PUBLIC_APP_ENV ||
+    process.env.VERCEL_ENV ||
+    process.env.NODE_ENV ||
+    ""
+  ).toLowerCase();
+  return env === "production" || env === "prod";
+};

@@ -24,7 +24,7 @@ const ProjectTile: React.FC<Props> = ({
   customClass ='',
 }) => {
   return (
-    <div className={`w-full md:w-1/2 lg:w-1/3 p-2 md:p-4 max-w-full overflow-hidden flex-shrink-0 ${customClass}`}>
+    <div className={`w-full md:w-1/2 lg:w-1/3 p-2 md:p-4 max-w-full overflow-hidden flex-shrink-0 animate-fadeInIDE ${customClass}`}>
       <div className="flex py-1 px-2">
         <div className="text-[#5565e8] font-semibold">{title}</div>
         <div className="flex">
@@ -32,7 +32,7 @@ const ProjectTile: React.FC<Props> = ({
         </div>
       </div>
       <div
-        className="border-borderColor border rounded-2xl bg-[#011221] overflow-hidden"
+        className="border-borderColor border rounded-2xl bg-[#011221] overflow-hidden transition-transform duration-300 hover:-translate-y-[2px] hover:shadow-[0_10px_30px_rgba(67,217,173,0.08)] will-change-transform"
         style={{ height: `${height}px` }}
       >
         <div>
