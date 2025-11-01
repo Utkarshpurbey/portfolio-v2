@@ -2,7 +2,7 @@ import IdePanel from "./IdePanel";
 
 const ExpCard = ({
   companyName = "company",
-  isInternship,
+  isInternship = false,
   logo,
   role,
   tenure,
@@ -43,7 +43,7 @@ const ExpCard = ({
               <span className="text-[#4D5BCE]">const</span>{" "}
               <span className="text-[#43D9AD]">{key}</span>{" "}
               <span className="text-[#E99287]">=</span>{" "}
-              <span className="text-[#E99287]">"{value}"</span>
+              <span className="text-[#E99287]">&quot;{value}&quot;</span>
             </div>
           ))}
 

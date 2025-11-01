@@ -1,6 +1,7 @@
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import { ICON_MAP } from "../utils/iconMap";
+import { getAssetPath } from "../utils/utils";
 
 interface Props {
   title: string;
@@ -23,6 +24,15 @@ const ProjectTile: React.FC<Props> = ({
   githubUrl,
   customClass ='',
 }) => {
+  const resolvedImageUrl = imageUrl.startsWith("http") ? imageUrl : getAssetPath(imageUrl);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const img = document.createElement('img');
+      img.src = resolvedImageUrl;
+    }
+  }, [resolvedImageUrl]);
+
   return (
     <div className={`w-full md:w-1/2 lg:w-1/3 p-2 md:p-4 max-w-full overflow-hidden flex-shrink-0 animate-fadeInIDE ${customClass}`}>
       <div className="flex py-1 px-2">
@@ -38,11 +48,14 @@ const ProjectTile: React.FC<Props> = ({
         <div>
           <div className="h-[15vh] w-full relative">
             <Image
-              src={imageUrl}
-              layout="fill"
-              objectFit="cover"
-              alt="Project Image"
+              src={resolvedImageUrl}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              style={{ objectFit: "cover" }}
+              alt={`${title} Project Image`}
               className="rounded-t-2xl"
+              loading="lazy"
+              unoptimized={true}
             />
             <div className="absolute top-2 right-2 flex space-x-2">
               {techStack &&

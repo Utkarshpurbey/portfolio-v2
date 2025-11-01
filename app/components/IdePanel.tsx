@@ -30,7 +30,14 @@ const IdePanel: React.FC<IdePanelProps> = ({
           <div className="pr-2">
             {logo ? (
               <div className="h-6 w-6 rounded-md border border-[#1e2d3d] flex items-center justify-center bg-[#011628]">
-                <Image src={logo} alt="logo" height={16} width={16} className="rounded-sm" />
+                <Image 
+                  src={logo} 
+                  alt="logo" 
+                  height={16} 
+                  width={16} 
+                  className="rounded-sm"
+                  loading="lazy"
+                />
               </div>
             ) : (
               <div className="h-6 w-6" />

@@ -191,7 +191,14 @@ const Game = () => {
     <div className="h-full bg-[#062430] rounded-md overflow-y-auto">
       {!hasGameStarted ? (
         <div className="text-white flex flex-col items-center justify-around h-full">
-          <Image src={simonPng} alt="simon game" height={100} width={100} />
+          <Image 
+            src={simonPng} 
+            alt="simon game" 
+            height={100} 
+            width={100}
+            priority
+            loading="eager"
+          />
           <button
             className="bg-primaryOrange text-primary p-1 rounded-md"
             onClick={startGame}
@@ -204,7 +211,14 @@ const Game = () => {
           {hasUserMadeMistake ? (
             <div className="h-full flex flex-col justify-center">
               <div className="flex justify-center pt-8 pb-10">
-                <Image src={simonPng} alt="simon game" height={100} width={100} />
+                <Image 
+                  src={simonPng} 
+                  alt="simon game" 
+                  height={100} 
+                  width={100}
+                  priority
+                  loading="eager"
+                />
               </div>
               <div className="w-full bg-[#011628] py-4 flex items-center justify-center">
                 <div className="text-[#43d9ad] text-2xl tracking-widest">{hasUserWon ? "WELL DONE!" : "GAME OVER!"}</div>

@@ -81,3 +81,5 @@ export const getAssetPath = (path: string): string => {
   // Ensure single slash when concatenating
   return `${base}${path.startsWith("/") ? path : `/${path}`}`;
 };
+
+export { preloadImage, preloadImages, preloadImageViaLink } from "./imageCache";

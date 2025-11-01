@@ -8,6 +8,7 @@ import { ICON_MAP } from "../utils/iconMap";
 import SidePanel from "../components/SidePanel";
 import { useSelector } from "react-redux";
 import { IRootState } from "../Slice/store";
+import { preloadImages, getAssetPath } from "../utils/utils";
 
 type Project = {
   title: string;
@@ -26,6 +27,16 @@ const Projects = () => {
   const [closeSignal, setCloseSignal] = useState<number>(0);
 
   useEffect(() => {}, [closeSignal]);
+
+  useEffect(() => {
+    const imageUrls = projects.map((project) => 
+      project.imageUrl.startsWith("http") 
+        ? project.imageUrl 
+        : getAssetPath(project.imageUrl)
+    );
+    preloadImages(imageUrls, { fetchPriority: 'low' }).catch(() => {
+    });
+  }, []);
 
   const handleCheckboxChange = (option) => {
     // trigger close of side panel on mobile after a short delay

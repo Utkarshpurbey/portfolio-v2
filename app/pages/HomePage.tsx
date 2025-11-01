@@ -98,6 +98,7 @@ const RightPanel: React.FC = React.memo(() => {
               src={pointsSvg}
               alt="point left"
               className="w-6 h-6"
+              loading="lazy"
             />
           ))}
         </div>
@@ -142,21 +143,29 @@ const HomePageContent: React.FC<{ isMobile: boolean }> = React.memo(
               src={boltSvg}
               alt="bolt top left"
               className="absolute top-1 left-1 w-5 h-5"
+              priority
+              loading="eager"
             />
             <Image
               src={boltSvg}
               alt="bolt top right"
               className="absolute top-1 right-1 w-5 h-5"
+              priority
+              loading="eager"
             />
             <Image
               src={boltSvg}
               alt="bolt bottom left"
               className="absolute bottom-1 left-1 w-5 h-5"
+              priority
+              loading="eager"
             />
             <Image
               src={boltSvg}
               alt="bolt bottom right"
               className="absolute bottom-1 right-1 w-5 h-5"
+              priority
+              loading="eager"
             />
 
             <div
