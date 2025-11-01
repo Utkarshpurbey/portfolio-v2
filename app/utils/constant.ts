@@ -23,6 +23,7 @@ export const newExpList = [
     role: "Software Development Intern",
     desc: "Built a produce price aggregation system using APIs and web scraping to surface nationwide insights. Automated data pipelines with Spring Boot and cron jobs, storing results in MongoDB and visualizing them through a React.js dashboard.",
     logo: ncLogo,
+    isInternship: true,
   },
   {
     companyName: "The Entrepreneurship Network",
