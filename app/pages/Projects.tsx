@@ -101,7 +101,7 @@ const Projects = () => {
           {selectedOptions?.length > 0 && (
   isMobile ? (
     <div className="px-4 py-2 text-lg">
-      <span className="text-white">//projects </span>
+      <span className="text-white">{"//projects "}</span>
       <span>
         / {selectedOptions.join("; ")}
       </span>

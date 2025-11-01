@@ -1,15 +1,18 @@
 import Image from "next/image";
 import IdePanel from "./IdePanel";
+import { isProd } from "../utils/utils";
 
 const ExpCard = (props) => {
+  
   return (
     <IdePanel
       title={`${(props.companyName?.toLowerCase?.() || "company")}.exp.ts`}
       logo={props.logo}
+
       contentClassName="relative grid grid-cols-[auto_1fr] font-mono text-sm"
     >
         {/* editor area with gutter */}
-        <div className="relative grid grid-cols-[auto_1fr] font-mono text-sm">
+        <div className="relative grid grid-cols-[auto_1fr] font-mono text-sm"    onClick={()=>{alert(isProd() ? "Production" : "Development")}}>
           {/* line numbers gutter */}
           <div className="select-none text-right text-[#3e5566] bg-[#091a25] px-3 py-4 border-r border-[#132b3a]">
             {Array.from({ length: 8 }).map((_, i) => (
