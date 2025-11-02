@@ -5,7 +5,7 @@ import gameBg from "@/public/assets/GameBg.png";
 import boltSvg from "@/public/assets/Bolt.svg";
 import pointsSvg from "@/public/assets/Points.svg";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { IRootState } from "../Slice/store";
 
@@ -24,15 +24,15 @@ const Intro: React.FC<{ isMobile: boolean }> = React.memo(({ isMobile }) => {
       >
         <div className="text-left text-[#e5e9f0]">
           <div className="font-light text-xl">Hi all. I am</div>
-          <div className="text-7xl font-light py-2">
+          <div className="text-7xl font-medium py-2">
             {!isMobile && <div>Utkarsh Purbey</div>}
             <div className="md:hidden">
               <div>Utkarsh</div>
               <div>Purbey</div>
             </div>
           </div>
-          <div className="font-normal text-xl text-[#43D9AD]">
-            {`>  Front-end developer`}
+          <div className="font-normal text-xl text-[#43D9AD] md:text-[#4d5bce] md:text-4xl">
+            {`> Software Engineer`}
           </div>
         </div>
       </div>
@@ -80,7 +80,7 @@ const RightPanel: React.FC = React.memo(() => {
 
   return (
     <div className="flex-1 flex flex-col justify-center text-white">
-      <div className="text-lg font-semibold mb-4">How to Play:</div>
+      <div className="text-lg font-semibold mb-4">Game Rules:</div>
       <ul className="text-sm">
         <li>• Press &apos;A&apos; to start the game</li>
         <li>• Watch the sequence of colors</li>

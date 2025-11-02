@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 :root {
   --foreground-rgb: 97, 123, 150; /* RGB representation of #617b96 */
@@ -124,6 +125,64 @@ body {
   }
 }
 
+@keyframes dash {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: 14;
+  }
+}
+
+@keyframes drawPath {
+  from {
+    stroke-dashoffset: 1000;
+    opacity: 0;
+  }
+  to {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes pathDraw {
+  0% {
+    stroke-dasharray: 0, 1000;
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    stroke-dasharray: 1000, 0;
+    opacity: 1;
+  }
+}
+
+@keyframes journeyGlow {
+  0%, 100% {
+    opacity: 0.6;
+    filter: drop-shadow(0 0 2px rgba(67, 217, 173, 0.3));
+  }
+  50% {
+    opacity: 0.9;
+    filter: drop-shadow(0 0 6px rgba(67, 217, 173, 0.6));
+  }
+}
+
+.animate-dash {
+  animation: dash 2s linear infinite;
+}
+
+.animate-draw-path {
+  stroke-dasharray: 1000;
+  animation: drawPath 0.8s ease-out forwards;
+}
+
+.animate-journey-glow {
+  animation: journeyGlow 3s ease-in-out infinite;
+}
+
 @keyframes terminalBlink {
   0%,
   50% {
@@ -197,3 +256,10 @@ body {
   background-color: rgba(255, 165, 95, 0.1);
   border-left: 2px solid #ffa55f;
 }
+
+.GameFont {
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
