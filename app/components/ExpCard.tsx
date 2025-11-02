@@ -22,12 +22,11 @@ const ExpCard = ({
   ];
 
   return (
-    <div className="relative group">
-      <IdePanel
-        title={title}
-        logo={logo}
-        contentClassName="relative grid grid-cols-[auto_1fr] font-mono text-sm"
-      >
+    <IdePanel
+      title={title}
+      logo={logo}
+      contentClassName="relative grid grid-cols-[auto_1fr] font-mono text-sm"
+    >
         <div className="relative grid grid-cols-[auto_1fr] font-mono text-sm">
           <div className="select-none text-right text-[#3e5566] bg-[#091a25] px-3 py-4 border-r border-[#132b3a]">
             {lineNumbers.map((n) => (
@@ -55,8 +54,7 @@ const ExpCard = ({
             <div className="leading-7 text-[#cbd5e1] whitespace-pre-line">{desc}</div>
           </div>
         </div>
-      </IdePanel>
-    </div>
+    </IdePanel>
   );
 };
 
